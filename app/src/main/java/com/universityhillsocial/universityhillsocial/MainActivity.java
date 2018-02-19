@@ -2,6 +2,11 @@ package com.universityhillsocial.universityhillsocial;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.app.Activity;
+import android.view.Menu;
+import android.app.IntentService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,7 +15,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        int i = 1 + 1;
-        // comment 2
+        Button LogInButton = (Button) findViewById(R.id.LogInButton);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Intent changeScreen = new Intent()
+            }
+        };
+
     }
 }
