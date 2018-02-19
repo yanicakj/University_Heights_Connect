@@ -26,14 +26,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent changeScreen = new Intent(MainActivity.this, WelcomeActivity.class);
-                MainActivity.this.startActivity(changeScreen);
-            }
-        };*/
 
     }
 }
