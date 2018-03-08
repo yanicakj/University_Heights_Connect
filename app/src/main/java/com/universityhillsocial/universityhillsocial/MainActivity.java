@@ -12,16 +12,27 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText userEmail, userPassword;
     private Button LoginButton;
     private TextView signUp;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            finish();
+            startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+        }
 
         setViews();
 
@@ -29,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validate()) {
-                    // move to profile screen
+                    if (validateAuth(userEmail.getText().toString(), userPassword.getText().toString())) {
+                        // move to profile screen
 
-                    //Intent changeScreen = new Intent(getApplicationContext(), WelcomeActivity.class);
-                    //startActivity(changeScreen);
+                    }
                 }
             }
         });
@@ -67,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
             filled = true;
 
         return filled;
+    }
+
+    private Boolean validateAuth(String userName, String password) {
+
+
     }
 
 
