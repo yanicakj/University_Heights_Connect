@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "153039675320",
+    "firebase_url": "https://university-hill-social.firebaseio.com",
+    "project_id": "university-hill-social",
+    "storage_bucket": "university-hill-social.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153039675320:android:9694e2e930177c29",
+        "android_client_info": {
+          "package_name": "com.universityhillsocial.universityhillsocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153039675320-h7l97rfof4fcvkivp2hos586hc0aeer8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKJ5QXQNyQTfa1FqHMp-ic-Ig8FAxhHTw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
