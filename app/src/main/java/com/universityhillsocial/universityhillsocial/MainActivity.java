@@ -82,7 +82,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean validateAuth(String userName, String password) {
 
+        Boolean result = false;
 
+
+        return result;
     }
 
 
