@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="15dp"
-    tools:context="com.universityhillsocial.universityhillsocial.RegistrationActivity">
+    tools:context="com.universityhillsocial.universityhillsocial.RegistrationActivity"
+    tools:layout_editor_absoluteY="25dp">
 
     <EditText
         android:id="@+id/registerEmail"
@@ -13,13 +14,15 @@
         android:layout_height="52dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="149dp" />
+        app:layout_constraintTop_toBottomOf="@+id/registerWelcome" />
 
     <EditText
         android:id="@+id/registerPassword"
@@ -40,19 +43,16 @@
         android:id="@+id/registerWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="cursive"
         android:text="Welcome!"
         android:textColor="@android:color/background_dark"
         android:textSize="38sp"
-        app:layout_constraintBottom_toTopOf="@+id/registerEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.593" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/RegisterButton"
@@ -95,6 +95,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AlreadySignedUpTextView"
         app:layout_constraintVertical_bias="0.128" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 
 </android.support.constraint.ConstraintLayout>
