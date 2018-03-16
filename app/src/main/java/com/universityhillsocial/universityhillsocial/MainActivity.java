@@ -35,25 +35,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setViews();
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        //if (user != null) {
-        //    finish();
-        //    startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
-        //}
-
-        setViews();
+        if (user != null) {
+            //finish();
+            //startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+            checkEmailVerification();
+        }
 
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validate()) {
-                    if (validateAuth(userEmail.getText().toString(), userPassword.getText().toString())) {
-                        // move to profile screen
-
-                    }
+                    validateAuth(userEmail.getText().toString(), userPassword.getText().toString());
                 }
             }
         });
@@ -90,9 +87,7 @@ public class MainActivity extends AppCompatActivity {
         return filled;
     }
 
-    private Boolean validateAuth(String userName, String password) {
-
-        Boolean result = false;
+    private void validateAuth(String userName, String password) {
 
         progressDialog.setMessage("Checking!");
         progressDialog.show();
@@ -102,8 +97,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
-                    Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+                    checkEmailVerification();
                 }
                 else {
                     progressDialog.dismiss();
@@ -115,9 +109,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        return result;
     }
 
-
+    private void checkEmailVerification() {
+        FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
+        boolean emailFlag = firebaseUser.isEmailVerified();
+        if (emailFlag) {
+            //Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+        }
+        else {
+            Toast.makeText(this, "Please Verify Your Email", Toast.LENGTH_LONG).show();
+            firebaseAuth.signOut();
+        }
+    }
 }
 
