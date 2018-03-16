@@ -38,10 +38,11 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-            finish();
-            startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
-        }
+
+        //if (user != null) {
+        //    finish();
+        //    startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+        //}
 
         setViews();
 
