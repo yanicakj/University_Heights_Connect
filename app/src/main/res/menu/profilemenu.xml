@@ -19,10 +19,10 @@
     </item>
 
     <item
-        android:id="@+id/profileMenu"
+        android:id="@+id/homeMenu"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:title="Profile"
+        android:title="Home"
         >
     </item>
 

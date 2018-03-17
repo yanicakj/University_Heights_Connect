@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private Button logoutButton;
     private FirebaseAuth firebaseAuth;
@@ -18,7 +18,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_home);
         setViews();
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -32,7 +32,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void setViews() {
-        logoutButton = (Button) findViewById(R.id.logoutButton);
+        logoutButton = findViewById(R.id.logoutButton);
     }
 
     @Override
@@ -47,9 +47,15 @@ public class WelcomeActivity extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.logoutMenu: {
                 logout();
+                break;
             }
             case R.id.settingsMenu: {
                 settings();
+                break;
+            }
+            case R.id.profileMenu: {
+                profile();
+                break;
             }
         }
         return super.onOptionsItemSelected(item);
@@ -58,12 +64,18 @@ public class WelcomeActivity extends AppCompatActivity {
     private void logout() {
         firebaseAuth.signOut();
         finish();
-        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+        startActivity(new Intent(HomeActivity.this, MainActivity.class));
     }
 
     private void settings() {
         finish();
-        startActivity(new Intent(WelcomeActivity.this, SettingsActivity.class));
+        startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
     }
+
+    private void profile() {
+        finish();
+        startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+    }
+
 
 }

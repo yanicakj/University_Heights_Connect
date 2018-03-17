@@ -70,12 +70,12 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void setViews() {
 
-        registerButton = (Button) findViewById(R.id.RegisterButton);
-        registerEmail = (EditText) findViewById(R.id.registerEmail);
-        registerPassword = (EditText) findViewById(R.id.registerPassword);
-        loginJumpBack = (TextView) findViewById(R.id.LoginJumpBack);
-        registerFirstName = (EditText) findViewById(R.id.registerFirstName);
-        registerLastName = (EditText) findViewById(R.id.registerLastName);
+        registerButton = findViewById(R.id.RegisterButton);
+        registerEmail = findViewById(R.id.registerEmail);
+        registerPassword = findViewById(R.id.registerPassword);
+        loginJumpBack = findViewById(R.id.LoginJumpBack);
+        registerFirstName = findViewById(R.id.registerFirstName);
+        registerLastName = findViewById(R.id.registerLastName);
 
     }
 

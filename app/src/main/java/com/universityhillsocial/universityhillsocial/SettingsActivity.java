@@ -35,6 +35,11 @@ public class SettingsActivity extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.logoutMenu: {
                 logout();
+                break;
+            }
+            case R.id.profileMenu: {
+                profile();
+                break;
             }
         }
         return super.onOptionsItemSelected(item);
@@ -45,6 +50,11 @@ public class SettingsActivity extends AppCompatActivity {
         firebaseAuth.signOut();
         finish();
         startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+    }
+
+    private void profile() {
+        finish();
+        startActivity(new Intent(SettingsActivity.this, ProfileActivity.class));
     }
 
 }

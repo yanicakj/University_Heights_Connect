@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
-import android.app.Activity;
-import android.view.Menu;
-import android.app.IntentService;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (user != null) {
             //finish();
-            //startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+            //startActivity(new Intent(MainActivity.this, HomeActivity.class));
             checkEmailVerification();
         }
 
@@ -73,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setViews() {
 
-        userEmail = (EditText) findViewById(R.id.userEmail);
-        userPassword = (EditText) findViewById(R.id.userPassword);
-        LoginButton = (Button) findViewById(R.id.LogInButton);
-        signUp = (TextView) findViewById(R.id.SignUp);
-        forgotPassword = (TextView) findViewById(R.id.forgotPassword);
+        userEmail = findViewById(R.id.userEmail);
+        userPassword = findViewById(R.id.userPassword);
+        LoginButton = findViewById(R.id.LogInButton);
+        signUp = findViewById(R.id.SignUp);
+        forgotPassword = findViewById(R.id.forgotPassword);
 
     }
 
@@ -125,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         if (emailFlag) {
             //Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
             finish();
-            startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
         }
         else {
             Toast.makeText(this, "Please verify your email!", Toast.LENGTH_LONG).show();
