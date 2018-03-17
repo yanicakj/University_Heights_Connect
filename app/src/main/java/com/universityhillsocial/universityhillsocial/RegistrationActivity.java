@@ -15,14 +15,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText registerEmail, registerPassword, registerUserName;
+    private EditText registerEmail, registerPassword, registerFirstName, registerLastName;
     private Button registerButton;
     private TextView loginJumpBack;
     private FirebaseAuth firebaseAuth;
+    String inputEmail, inputPassword, inputFirstName, inputLastName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,18 +74,21 @@ public class RegistrationActivity extends AppCompatActivity {
         registerEmail = (EditText) findViewById(R.id.registerEmail);
         registerPassword = (EditText) findViewById(R.id.registerPassword);
         loginJumpBack = (TextView) findViewById(R.id.LoginJumpBack);
-        registerUserName = (EditText) findViewById(R.id.registerFirstName);
+        registerFirstName = (EditText) findViewById(R.id.registerFirstName);
+        registerLastName = (EditText) findViewById(R.id.registerLastName);
 
     }
 
     private Boolean validate() {
 
         Boolean filled = false;
-        String inputEmail = registerEmail.getText().toString().trim();
-        String inputPassword = registerPassword.getText().toString().trim();
-        String inputUserName = registerUserName.getText().toString().trim();
+        inputEmail = registerEmail.getText().toString().trim();
+        inputPassword = registerPassword.getText().toString().trim();
+        inputFirstName = registerFirstName.getText().toString().trim();
+        inputLastName = registerLastName.getText().toString().trim();
 
-        if (inputEmail.isEmpty() || inputPassword.isEmpty() || inputUserName.isEmpty())
+
+        if (inputEmail.isEmpty() || inputPassword.isEmpty() || inputFirstName.isEmpty() || inputLastName.isEmpty())
             Toast.makeText(this, "Please fill out all of the fields!", Toast.LENGTH_LONG).show();
         else
             filled = true;
@@ -98,6 +104,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
+                        sendUserData();
                         Toast.makeText(RegistrationActivity.this, "Email Verification Sent", Toast.LENGTH_LONG).show();
                         firebaseAuth.signOut();
                         finish();
@@ -110,4 +117,12 @@ public class RegistrationActivity extends AppCompatActivity {
             });
         }
     }
+
+    private void sendUserData() {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        UserProfile userProfile = new UserProfile(inputEmail, inputFirstName, inputLastName);
+        databaseReference.setValue(userProfile);
+    }
+
 }
