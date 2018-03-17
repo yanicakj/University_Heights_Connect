@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText registerEmail, registerPassword;
+    private EditText registerEmail, registerPassword, registerUserName;
     private Button registerButton;
     private TextView loginJumpBack;
     private FirebaseAuth firebaseAuth;
@@ -71,17 +71,19 @@ public class RegistrationActivity extends AppCompatActivity {
         registerEmail = (EditText) findViewById(R.id.registerEmail);
         registerPassword = (EditText) findViewById(R.id.registerPassword);
         loginJumpBack = (TextView) findViewById(R.id.LoginJumpBack);
+        registerUserName = (EditText) findViewById(R.id.registerFirstName);
 
     }
 
     private Boolean validate() {
 
         Boolean filled = false;
-        String inputEmail = registerEmail.getText().toString();
-        String inputPassword = registerPassword.getText().toString();
+        String inputEmail = registerEmail.getText().toString().trim();
+        String inputPassword = registerPassword.getText().toString().trim();
+        String inputUserName = registerUserName.getText().toString().trim();
 
-        if (inputEmail.isEmpty() || inputPassword.isEmpty())
-            Toast.makeText(this, "Please fill out all of the fields", Toast.LENGTH_SHORT).show();
+        if (inputEmail.isEmpty() || inputPassword.isEmpty() || inputUserName.isEmpty())
+            Toast.makeText(this, "Please fill out all of the fields!", Toast.LENGTH_LONG).show();
         else
             filled = true;
 
