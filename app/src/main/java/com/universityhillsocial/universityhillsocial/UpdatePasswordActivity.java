@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class UpdatePasswordActivity extends AppCompatActivity {
 
 
-    private EditText newPassword;
+    private EditText newPassword, confirmPassword;
     private Button updateButton;
     private FirebaseUser firebaseUser;
 
@@ -31,6 +31,7 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         newPassword = findViewById(R.id.newPassword);
+        confirmPassword = findViewById(R.id.confirmPassword);
         updateButton = findViewById(R.id.updatePasswordButton);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -46,18 +47,25 @@ public class UpdatePasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String senderPassword = newPassword.getText().toString().trim();
-                firebaseUser.updatePassword(senderPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(UpdatePasswordActivity.this, "Password updated!", Toast.LENGTH_LONG).show();
-                            finish();
+                String secondPassword = confirmPassword.getText().toString().trim();
+
+                if (senderPassword.equals(secondPassword) && senderPassword.length() >= 6) {
+                    firebaseUser.updatePassword(senderPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(UpdatePasswordActivity.this, "Password updated!", Toast.LENGTH_LONG).show();
+                                finish();
+                            } else {
+                                Toast.makeText(UpdatePasswordActivity.this, "Password update failed. Problem occurred.", Toast.LENGTH_LONG).show();
+                            }
                         }
-                        else {
-                            Toast.makeText(UpdatePasswordActivity.this, "Password update failed. Problem occurred.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                    });
+                }
+                else {
+                    Toast.makeText(UpdatePasswordActivity.this, "Please make sure both passwords match and are at least 6 characters long!", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
