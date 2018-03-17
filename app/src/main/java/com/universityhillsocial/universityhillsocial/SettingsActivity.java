@@ -19,7 +19,10 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         firebaseAuth = FirebaseAuth.getInstance();
+
 
     }
 
@@ -39,6 +42,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
             case R.id.profileMenu: {
                 profile();
+                break;
+            }
+            case android.R.id.home: {
+                onBackPressed();
                 break;
             }
         }

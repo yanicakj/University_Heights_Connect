@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.universityhillsocial.universityhillsocial.ProfileActivity">
+    tools:context="com.universityhillsocial.universityhillsocial.EditProfileActivity">
 
     <ImageView
-        android:id="@+id/profilePicture"
+        android:id="@+id/imageView"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginBottom="8dp"
@@ -18,71 +18,79 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077"
+        app:layout_constraintVertical_bias="0.116"
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
-    <TextView
-        android:id="@+id/profileFirstName"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/updateFirstName"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
-        android:textSize="22dp"
-        android:text="TextView"
+        android:ems="10"
+        android:hint="New First Name"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
+        app:layout_constraintTop_toBottomOf="@+id/clickToEdit" />
 
-    <TextView
-        android:id="@+id/profileLastName"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/updateLastName"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textSize="22dp"
-        android:text="TextView"
+        android:ems="10"
+        android:textAlignment="center"
+        android:hint="New Last Name"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/updateFirstName" />
 
-    <TextView
-        android:id="@+id/profileEmail"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/updateEmail"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:textSize="22dp"
-        android:text="TextView"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:textAlignment="center"
+        android:hint="New Email"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/updateLastName" />
 
     <Button
-        android:id="@+id/changePasswordFromProfile"
+        android:id="@+id/sendProfileChanges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="44dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Change Password"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editProfileFromProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/updateEmail" />
 
-    <Button
-        android:id="@+id/editProfileFromProfile"
+    <TextView
+        android:id="@+id/clickToEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
-        android:text="Edit Profile"
+        android:layout_marginTop="8dp"
+        android:text="Click to edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 </android.support.constraint.ConstraintLayout>

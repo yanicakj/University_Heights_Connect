@@ -1,11 +1,12 @@
 package com.universityhillsocial.universityhillsocial;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private TextView profileFirstName, profileLastName, profileEmail;
     private ImageView profilePicture;
+    private Button changePassword, profileEditButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         setViews();
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
@@ -49,6 +52,22 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, UpdatePasswordActivity.class));
+            }
+        });
+
+        profileEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
+            }
+        });
+
+
     }
 
 
@@ -57,6 +76,9 @@ public class ProfileActivity extends AppCompatActivity {
         profileLastName = findViewById(R.id.profileLastName);
         profileEmail = findViewById(R.id.profileEmail);
         profilePicture = findViewById(R.id.profilePicture);
+        changePassword = findViewById(R.id.changePasswordFromProfile);
+        profileEditButton = findViewById(R.id.editProfileFromProfile);
+
     }
 
 
@@ -94,7 +116,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void settings() {
-        finish();
         startActivity(new Intent(ProfileActivity.this, SettingsActivity.class));
     }
 

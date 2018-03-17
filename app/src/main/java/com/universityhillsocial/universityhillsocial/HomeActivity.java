@@ -68,7 +68,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void settings() {
-        finish();
         startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
     }
 
