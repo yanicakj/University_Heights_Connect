@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userEmail, userPassword;
     private Button LoginButton;
-    private TextView signUp;
+    private TextView signUp, forgotPassword;
     private FirebaseAuth firebaseAuth;
     private int counter = 5;
     private ProgressDialog progressDialog;
@@ -62,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PasswordActivity.class));
+            }
+        });
+
     }
 
     private void setViews() {
@@ -70,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         userPassword = (EditText) findViewById(R.id.userPassword);
         LoginButton = (Button) findViewById(R.id.LogInButton);
         signUp = (TextView) findViewById(R.id.SignUp);
+        forgotPassword = (TextView) findViewById(R.id.forgotPassword);
 
     }
 
@@ -80,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         String inputPassword = userPassword.getText().toString();
 
         if (inputEmail.isEmpty() || inputPassword.isEmpty())
-            Toast.makeText(this, "Please fill out all of the fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill out all of the fields!", Toast.LENGTH_LONG).show();
         else
             filled = true;
 
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     progressDialog.dismiss();
-                    Toast.makeText(MainActivity.this, "Login Unsuccessful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Login Unsuccessful. Make sure your entered username and password are correct!", Toast.LENGTH_LONG).show();
                     counter--;
                     if (counter == 0) {
                         LoginButton.setEnabled(false);
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
         }
         else {
-            Toast.makeText(this, "Please Verify Your Email", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please verify your email!", Toast.LENGTH_LONG).show();
             firebaseAuth.signOut();
         }
     }
