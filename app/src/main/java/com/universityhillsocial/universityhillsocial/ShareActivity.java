@@ -13,17 +13,17 @@ import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewH
  * Created by Kubie on 3/18/18.
  */
 
-public class ProfileActivity extends AppCompatActivity {
+public class ShareActivity extends AppCompatActivity {
 
 
-    private static final String TAG = "ProfileActivity";
-    private Context mContext = ProfileActivity.this;
+    private static final String TAG = "ShareActivity";
+    private Context mContext = ShareActivity.this;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Log.d(TAG, "OnCreate: Started");
+        Log.d(TAG, "OnCreate: started");
 
         setupBottomNavigationView();
 

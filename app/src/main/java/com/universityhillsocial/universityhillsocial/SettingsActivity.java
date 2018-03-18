@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -61,7 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void profile() {
         finish();
-        startActivity(new Intent(SettingsActivity.this, ProfileActivity.class));
+        startActivity(new Intent(SettingsActivity.this, OldProfileActivity.class));
     }
 
 }

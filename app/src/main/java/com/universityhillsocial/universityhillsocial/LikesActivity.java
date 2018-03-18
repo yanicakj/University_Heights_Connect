@@ -13,11 +13,11 @@ import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewH
  * Created by Kubie on 3/18/18.
  */
 
-public class ProfileActivity extends AppCompatActivity {
+public class LikesActivity extends AppCompatActivity {
 
 
-    private static final String TAG = "ProfileActivity";
-    private Context mContext = ProfileActivity.this;
+    private static final String TAG = "LikesActivity";
+    private Context mContext = LikesActivity.this;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

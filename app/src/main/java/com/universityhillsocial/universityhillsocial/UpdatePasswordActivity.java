@@ -35,14 +35,6 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         updateButton = findViewById(R.id.updatePasswordButton);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //String password = newPassword.getText().toString().trim();
-        //updateButton.setEnabled(false);
-
-        //if(!password.equals("") && password.length() > 6) {
-        //    updateButton.setEnabled(true);
-        //}
-
-
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

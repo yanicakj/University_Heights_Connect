@@ -2,6 +2,7 @@ package com.universityhillsocial.universityhillsocial;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,11 +14,11 @@ import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewH
  * Created by Kubie on 3/18/18.
  */
 
-public class ProfileActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
 
-    private static final String TAG = "ProfileActivity";
-    private Context mContext = ProfileActivity.this;
+    private static final String TAG = "SearchActivity";
+    private Context mContext = SearchActivity.this;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
