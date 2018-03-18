@@ -1,6 +1,7 @@
 package com.universityhillsocial.universityhillsocial.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.universityhillsocial.universityhillsocial.R;
@@ -41,21 +44,16 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.profileToolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        ImageView profileMenu = findViewById(R.id.topProfileBarMenu);
+        profileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Log.d(TAG, "Clicked menu item.");
-
-                switch (item.getItemId()) {
-                    case R.id.profileMenu: {
-                        Log.d(TAG, "Navigating to profile from click");
-                        break;
-                    }
-                }
-
-                return false;
+            public void onClick(View v) {
+                Log.d(TAG, "Navigating to Account Settings");
+                Intent intent = new Intent(mContext, AccountSettingsActivity.class);
+                startActivity(intent);
             }
         });
+
     }
 
     private void setupBottomNavigationView() {
@@ -69,11 +67,4 @@ public class ProfileActivity extends AppCompatActivity {
         menuItem.setChecked(true);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.profile_menu, menu);
-
-
-        return true;
-    }
 }

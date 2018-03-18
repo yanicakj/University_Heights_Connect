@@ -26,7 +26,9 @@
         <activity android:name=".Share.ShareActivity" />
         <activity android:name=".Likes.LikesActivity" />
         <activity android:name=".Profile.ProfileActivity" />
-        <activity android:name=".UpdatePasswordActivity"></activity>
+        <activity android:name=".UpdatePasswordActivity" />
+        <activity android:name=".Profile.AccountSettingsActivity" />
+
     </application>
 
 </manifest>

@@ -25,42 +25,42 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch(item.getItemId()) {
-            case R.id.logoutMenu: {
-                logout();
-                break;
-            }
-            case R.id.profileMenu: {
-                profile();
-                break;
-            }
-            case android.R.id.home: {
-                onBackPressed();
-                break;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    private void logout() {
-        firebaseAuth.signOut();
-        finish();
-        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-    }
-
-    private void profile() {
-        finish();
-        startActivity(new Intent(SettingsActivity.this, OldProfileActivity.class));
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        switch(item.getItemId()) {
+//            case R.id.logoutMenu: {
+//                logout();
+//                break;
+//            }
+//            case R.id.profileMenu: {
+//                profile();
+//                break;
+//            }
+//            case android.R.id.home: {
+//                onBackPressed();
+//                break;
+//            }
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//
+//    private void logout() {
+//        firebaseAuth.signOut();
+//        finish();
+//        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+//    }
+//
+//    private void profile() {
+//        finish();
+//        startActivity(new Intent(SettingsActivity.this, OldProfileActivity.class));
+//    }
 
 }
