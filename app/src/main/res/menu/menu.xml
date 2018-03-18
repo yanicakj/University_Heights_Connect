@@ -19,7 +19,7 @@
     </item>
 
     <item
-        android:id="@+id/profileMenu"
+        android:id="@+id/oldprofileMenu"
         android:orderInCategory="100"
         app:showAsAction="always"
         android:title="Profile"

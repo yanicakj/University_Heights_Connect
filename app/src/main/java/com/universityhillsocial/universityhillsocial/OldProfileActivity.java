@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.universityhillsocial.universityhillsocial.Home.HomeActivity;
 
 public class OldProfileActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class OldProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_old_profile);
 
         setViews();
 
@@ -84,7 +85,7 @@ public class OldProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.profilemenu, menu);
+        getMenuInflater().inflate(R.menu.oldprofilemenu, menu);
         return true;
     }
 

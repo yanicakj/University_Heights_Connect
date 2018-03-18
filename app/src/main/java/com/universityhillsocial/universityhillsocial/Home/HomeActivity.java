@@ -1,15 +1,22 @@
-package com.universityhillsocial.universityhillsocial;
+package com.universityhillsocial.universityhillsocial.Home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TableLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.universityhillsocial.universityhillsocial.MainActivity;
+import com.universityhillsocial.universityhillsocial.OldProfileActivity;
+import com.universityhillsocial.universityhillsocial.R;
+import com.universityhillsocial.universityhillsocial.SettingsActivity;
 import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewHelper;
 
 public class HomeActivity extends AppCompatActivity {
@@ -17,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     private Context mContext = HomeActivity.this;
     private FirebaseAuth firebaseAuth;
+    private static final int ACITVITY_NUM = 0;
     //private Toolbar toolbar
     //private ListView listView;
 
@@ -28,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         setViews();
         setupBottomNavigationView();
+        setupViewPager();
 
         //initToolbar();
 
@@ -65,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
                 settings();
                 break;
             }
-            case R.id.profileMenu: {
+            case R.id.oldprofileMenu: {
                 profile();
                 break;
             }
@@ -94,6 +103,24 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
         BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationViewEx);
+        Menu menu = bottomNavigationViewEx.getMenu();
+        MenuItem menuItem = menu.getItem(ACITVITY_NUM);
+        menuItem.setChecked(true);
+    }
+
+    // Responsible for adding the 3 tabs on top bar: camera, home, and messages
+    private void setupViewPager() {
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new CameraFragment());
+        adapter.addFragment(new HomeFragment());
+        adapter.addFragment(new MessagesFragment());
+        ViewPager viewPager = findViewById(R.id.container);
+        viewPager.setAdapter(adapter);
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_earth);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_arrow);
     }
 
 
