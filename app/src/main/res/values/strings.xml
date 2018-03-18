@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">University Hill Social</string>
     <string name="passwordUpdateFromProfile">Please enter your new password below. For security purposes, please make it longer than 6 characters using a combination of alpha and numberic values.</string>
+    <string name="edit_profile_fragment">Edit Profile</string>
+    <string name="sign_out_fragment">Sign Out</string>
 </resources>

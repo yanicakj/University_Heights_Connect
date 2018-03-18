@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TableLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -18,6 +17,7 @@ import com.universityhillsocial.universityhillsocial.OldProfileActivity;
 import com.universityhillsocial.universityhillsocial.R;
 import com.universityhillsocial.universityhillsocial.SettingsActivity;
 import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewHelper;
+import com.universityhillsocial.universityhillsocial.utils.SectionsPagerAdapter;
 
 public class HomeActivity extends AppCompatActivity {
 

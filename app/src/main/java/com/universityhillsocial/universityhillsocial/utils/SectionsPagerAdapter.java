@@ -1,4 +1,4 @@
-package com.universityhillsocial.universityhillsocial.Home;
+package com.universityhillsocial.universityhillsocial.utils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
