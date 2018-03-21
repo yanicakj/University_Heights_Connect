@@ -12,12 +12,14 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.universityhillsocial.universityhillsocial.MainActivity;
 import com.universityhillsocial.universityhillsocial.OldProfileActivity;
 import com.universityhillsocial.universityhillsocial.R;
 import com.universityhillsocial.universityhillsocial.SettingsActivity;
 import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewHelper;
 import com.universityhillsocial.universityhillsocial.utils.SectionsPagerAdapter;
+import com.universityhillsocial.universityhillsocial.utils.UniversalImageLoader;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -33,6 +35,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Log.d(TAG, "onCreate: Starting");
+
+        initImageLoader();
         firebaseAuth = FirebaseAuth.getInstance();
         setViews();
         setupBottomNavigationView();
@@ -111,18 +115,22 @@ public class HomeActivity extends AppCompatActivity {
     // Responsible for adding the 3 tabs on top bar: camera, home, and messages
     private void setupViewPager() {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new CameraFragment());
+        //adapter.addFragment(new CameraFragment());
         adapter.addFragment(new HomeFragment());
         adapter.addFragment(new MessagesFragment());
         ViewPager viewPager = findViewById(R.id.container);
         viewPager.setAdapter(adapter);
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_earth);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_arrow);
+        //tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_earth); // index 1
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_arrow); // index 2
     }
 
+    private void initImageLoader() {
+        UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
+    }
 
 //    public class SimpleAdapter extends BaseAdapter {
 //

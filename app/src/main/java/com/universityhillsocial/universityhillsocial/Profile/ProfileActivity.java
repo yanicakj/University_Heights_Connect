@@ -11,11 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.universityhillsocial.universityhillsocial.R;
 import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewHelper;
+import com.universityhillsocial.universityhillsocial.utils.ListViewClassAdapter;
+import com.universityhillsocial.universityhillsocial.utils.UniversalImageLoader;
+
+import java.util.ArrayList;
 
 /**
  * Created by Kubie on 3/18/18.
@@ -26,8 +31,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "ProfileActivity";
     private Context mContext = ProfileActivity.this;
-    private static final int ACITVITY_NUM = 4;
+    private static final int ACITVITY_NUM = 2; //4;
     private ProgressBar mProgressBar;
+    private ImageView profilePhoto;
 
 
     @Override
@@ -35,15 +41,52 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Log.d(TAG, "OnCreate: Started");
-        mProgressBar = findViewById(R.id.profileProgressBar);
-        mProgressBar.setVisibility(View.GONE);
 
+        setViews();
         setupToolBar();
         setupBottomNavigationView();
+        setProfileImage();
 
+        tempListSetup();
 
     }
 
+    private void tempListSetup() {
+        ArrayList<String> classes = new ArrayList<String>();
+        classes.add("CSC228");
+        classes.add("CSC231");
+        classes.add("CSC235");
+        classes.add("CSC237");
+        classes.add("MTH136");
+        classes.add("MTH221");
+        classes.add("MTH122");
+        classes.add("MTH121");
+        classes.add("CSC112");
+        classes.add("HST101");
+
+        setupProfileListView(classes);
+    }
+
+    private void setupProfileListView(ArrayList<String> classes) {
+        ListView listView = findViewById(R.id.listViewProfile);
+
+        ListViewClassAdapter adapter = new ListViewClassAdapter(mContext, R.layout.layout_list_classview, classes);
+        listView.setAdapter(adapter);
+    }
+
+
+    private void setProfileImage() {
+        String imgURL = "https://www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
+        UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "");
+
+    }
+
+    private void setViews() {
+        mProgressBar = findViewById(R.id.profileProgressBar);
+        mProgressBar.setVisibility(View.GONE);
+        profilePhoto = findViewById(R.id.profile_photo);
+
+    }
 
     private void setupToolBar() {
         Toolbar toolbar = findViewById(R.id.profileToolbar);

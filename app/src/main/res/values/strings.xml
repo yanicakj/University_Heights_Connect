@@ -3,4 +3,10 @@
     <string name="passwordUpdateFromProfile">Please enter your new password below. For security purposes, please make it longer than 6 characters using a combination of alpha and numberic values.</string>
     <string name="edit_profile_fragment">Edit Profile</string>
     <string name="sign_out_fragment">Sign Out</string>
+    <array name="semesters">
+        <item>Spring 2018</item>
+        <item>Fall 2017</item>
+        <item>Summer 2017</item>
+        <item>Spring 2017</item>
+    </array>
 </resources>

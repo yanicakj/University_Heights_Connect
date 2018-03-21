@@ -35,6 +35,7 @@ dependencies {
     compile 'com.android.support:design:26.1.0'
     compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
     compile 'de.hdodenhof:circleimageview:2.2.0'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 }
 
 apply plugin: 'com.google.gms.google-services'

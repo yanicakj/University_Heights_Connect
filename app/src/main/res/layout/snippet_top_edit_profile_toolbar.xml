@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:background="@drawable/white_grey_border_bottom"
         >
-        
+
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -16,31 +16,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/backarrow"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_back_arrow"
+                    android:layout_marginStart="10dp"
+
+                    />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Test User"
+                    android:text="Edit Profile"
                     android:textSize="22sp"
                     android:textColor="@color/black"
-                    android:layout_marginStart="15dp"
-                    android:id="@+id/profileName"/>
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/profileName"
+                    android:layout_toRightOf="@id/backarrow"/>
+
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:id="@+id/topProfileBarMenu"
+                    android:id="@+id/checkmark"
                     android:layout_marginEnd="20dp"
-                    android:src="@drawable/ic_ellipses"
+                    android:src="@drawable/ic_checkmark"
+                    android:layout_marginStart="10dp"
+                    android:layout_alignParentRight="true"
+
                     />
+
 
 
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
-        
+
     </android.support.design.widget.AppBarLayout>
 
 </merge>

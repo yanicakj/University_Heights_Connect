@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <include layout="@layout/test_snippet_top_share"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:text="Share Your Content or Add Info!"
+            android:textSize="18dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:id="@+id/tvCreatePost"
+            android:layout_centerHorizontal="true"
+            />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Class Name"
+            android:layout_below="@+id/tvCreatePost"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:id="@+id/className"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Professor Name"
+            android:layout_below="@+id/className"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:id="@+id/professorName"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Credit Hours"
+            android:layout_below="@+id/professorName"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:id="@+id/credits"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Spinner
+            android:layout_width="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/credits"
+            android:entries="@array/semesters"
+            android:textAlignment="center"
+            android:layout_marginTop="15dp"
+            android:id="@+id/semester">
+        </Spinner>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/semester"
+            android:text="Add Class!"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/addClassButton"/>
+
+
+
+        <include layout="@layout/layout_bottom_navigation_view" />
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
