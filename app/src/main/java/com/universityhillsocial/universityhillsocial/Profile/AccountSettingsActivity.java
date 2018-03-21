@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,6 +43,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
     //just for demo
     private FirebaseAuth firebaseAuth;
+    private TextView editProfile, signOut;
 
 
     @Override
@@ -54,11 +56,11 @@ public class AccountSettingsActivity extends AppCompatActivity {
         mRelativeLayout = findViewById(R.id.relLayout1);
 
         setupBottomNavigationView();
-        setupSettingsList();
-        setupFragments();
+        //setupSettingsList();
+        //setupFragments();
 
         //fore demo
-        //firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         // Setting up back arrow
         ImageView backArrow = findViewById(R.id.backarrow);
@@ -73,42 +75,64 @@ public class AccountSettingsActivity extends AppCompatActivity {
                 //startActivity(new Intent(AccountSettingsActivity.this, MainActivity.class));
             }
         });
-    }
 
-    private void setupSettingsList() {
-        Log.d(TAG, "Initializing Account Settings Listview");
-        ListView listView = findViewById(R.id.lvAccountSettings);
+        editProfile = findViewById(R.id.editProfile);
+        signOut = findViewById(R.id.signOut);
 
-        ArrayList<String> options = new ArrayList<>();
-        options.add(getString(R.string.edit_profile_fragment)); // fragment 0
-        options.add(getString(R.string.sign_out_fragment)); // fragment 1
-
-        ArrayAdapter adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "Navigating to position " + position);
-                setmViewPager(position);
+            public void onClick(View v) {
+                startActivity(new Intent(AccountSettingsActivity.this, EditProfileFragment.class));
             }
         });
 
-    }
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                firebaseAuth.signOut();
+                startActivity(new Intent(AccountSettingsActivity.this, MainActivity.class));
+            }
+        });
 
-    private void setmViewPager(int fragmentNumber) {
-        mRelativeLayout.setVisibility(View.GONE);
-        Log.d(TAG, "Navigating to frag " + fragmentNumber);
-        mViewPager.setAdapter(pagerAdapter);
-        mViewPager.setCurrentItem(fragmentNumber);
-    }
 
-    private void setupFragments() {
-        pagerAdapter = new SectionsStatePageAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragment(new EditProfileFragment(), getString(R.string.edit_profile_fragment)); // fragment 0
-        pagerAdapter.addFragment(new EditProfileFragment(), getString(R.string.sign_out_fragment)); // fragment 1
 
     }
+
+//    private void setupSettingsList() {
+//        Log.d(TAG, "Initializing Account Settings Listview");
+//        ListView listView = findViewById(R.id.lvAccountSettings);
+//
+//        ArrayList<String> options = new ArrayList<>();
+//        options.add(getString(R.string.edit_profile_fragment)); // fragment 0
+//        options.add(getString(R.string.sign_out_fragment)); // fragment 1
+//
+//        ArrayAdapter adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
+//        listView.setAdapter(adapter);
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.d(TAG, "Navigating to position " + position);
+//                setmViewPager(position);
+//            }
+//        });
+//
+//    }
+//
+//    private void setmViewPager(int fragmentNumber) {
+//        mRelativeLayout.setVisibility(View.GONE);
+//        Log.d(TAG, "Navigating to frag " + fragmentNumber);
+//        mViewPager.setAdapter(pagerAdapter);
+//        mViewPager.setCurrentItem(fragmentNumber);
+//    }
+//
+//    private void setupFragments() {
+//        pagerAdapter = new SectionsStatePageAdapter(getSupportFragmentManager());
+//        pagerAdapter.addFragment(new EditProfileFragment(), getString(R.string.edit_profile_fragment)); // fragment 0
+//        pagerAdapter.addFragment(new EditProfileFragment(), getString(R.string.sign_out_fragment)); // fragment 1
+//
+//    }
 
     private void setupBottomNavigationView() {
         Log.d(TAG, "Setting up Bottom Navigation View");

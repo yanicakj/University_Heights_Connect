@@ -19,13 +19,37 @@
             android:id="@+id/textSettings"
             />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/textSettings"
-            android:id="@+id/lvAccountSettings">
+        <!--<ListView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_below="@id/textSettings"-->
+            <!--android:id="@+id/lvAccountSettings">-->
 
-        </ListView>
+        <!--</ListView>-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textSettings"
+            android:text="Edit Profile"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/white_grey_border_bottom"
+            android:id="@+id/editProfile"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editProfile"
+            android:text="Sign Out"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:background="@drawable/white_grey_border_bottom"
+            android:id="@+id/signOut"
+            />
 
     </RelativeLayout>
 
