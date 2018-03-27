@@ -18,4 +18,9 @@
         <item>Summer 2014</item>
         <item>Spring 2016</item>
     </array>
+    <array name="schools">
+        <item>Essex County College</item>
+        <item>New Jersey Institute of Technology</item>
+        <item>Rutgers University</item>
+    </array>
 </resources>

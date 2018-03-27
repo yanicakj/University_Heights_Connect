@@ -22,6 +22,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.universityhillsocial.universityhillsocial.Home.HomeActivity;
 import com.universityhillsocial.universityhillsocial.R;
 import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewHelper;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by Kubie on 3/18/18.
@@ -36,10 +37,12 @@ public class ShareActivity extends AppCompatActivity {
     private ImageView topBarIcon;
     //2;
 
-    private EditText className, professorName, credits;
-    private Spinner semesters;
-    private Button addClassButton;
+    private EditText contentName, contentDescription, contentLocation;
+    private Spinner schools;
+    private Button addContentButton;
     private DatabaseReference classReference;
+    private FirebaseDatabase firebaseDatabase;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,10 +55,10 @@ public class ShareActivity extends AppCompatActivity {
         topBarIcon = findViewById(R.id.topShareBarMenu);
         classReference = FirebaseDatabase.getInstance().getReference("classes");
 
-        addClassButton.setOnClickListener(new View.OnClickListener() {
+        addContentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addClassToDB();
+                addContentToDB();
             }
         });
 
@@ -71,18 +74,31 @@ public class ShareActivity extends AppCompatActivity {
     }
 
 
-    private void addClassToDB() {
-        String classname = className.getText().toString().trim();
-        String professorname = professorName.getText().toString().trim();
-        String credithour = credits.getText().toString().trim();
-        String semester = semesters.getSelectedItem().toString();
+    private void addContentToDB() {
+        String id;
+        String name = contentName.getText().toString().trim();
+        String description = contentDescription.getText().toString().trim();
+        String location = contentLocation.getText().toString().trim();
+        String school = schools.getSelectedItem().toString();
 
-        if(!TextUtils.isEmpty(classname) && !TextUtils.isEmpty(professorname) &&  !TextUtils.isEmpty(credithour)) {
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(description) &&  !TextUtils.isEmpty(location)) {
 
-            String id = classReference.push().getKey();
-            ClassHolder classholder = new ClassHolder(classname, professorname, credithour, semester);
-            classReference.child(id).setValue(classholder);
+            firebaseDatabase = FirebaseDatabase.getInstance();
+
+            int randomNum = ThreadLocalRandom.current().nextInt(1, 10000000 + 1);
+            id = "post" + String.valueOf(randomNum);
+            DatabaseReference contentRef = firebaseDatabase.getReference("content").child(id);
+            //contentRef.push().setValue(id);
+            contentRef.child("name").setValue(name);
+            contentRef.child("description").setValue(description);
+            contentRef.child("location").setValue(location);
+            contentRef.child("school").setValue(school);
             Toast.makeText(this, "Data added to DB", Toast.LENGTH_LONG).show();
+
+//            String id = classReference.push().getKey();
+//            ClassHolder classholder = new ClassHolder(contentname, professorname, credithour, semester);
+//            classReference.child(id).setValue(classholder);
+//            Toast.makeText(this, "Data added to DB", Toast.LENGTH_LONG).show();
         }
         else {
             Toast.makeText(this, "Please fill out all of the fields!", Toast.LENGTH_LONG).show();
@@ -90,11 +106,11 @@ public class ShareActivity extends AppCompatActivity {
     }
 
     private void setViews() {
-        className = findViewById(R.id.className);
-        professorName = findViewById(R.id.professorName);
-        credits = findViewById(R.id.credits);
-        semesters = (Spinner) findViewById(R.id.semester);
-        addClassButton = findViewById(R.id.addClassButton);
+        contentName = findViewById(R.id.contentName);
+        contentDescription = findViewById(R.id.contentDescription);
+        contentLocation = findViewById(R.id.contentLocation);
+        schools = (Spinner) findViewById(R.id.school);
+        addContentButton = findViewById(R.id.addContentButton);
 
     }
 

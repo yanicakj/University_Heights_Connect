@@ -29,7 +29,15 @@
             android:layout_below="@id/relativeLayout1"
             >
 
-            <include layout="@layout/layout_center_viewpager"/>
+            <!--<include layout="@layout/layout_center_viewpager"/>-->
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="50dp"
+                >
+
+            </ListView>
 
         </RelativeLayout>
 
