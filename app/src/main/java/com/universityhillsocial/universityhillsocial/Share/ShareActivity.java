@@ -88,13 +88,15 @@ public class ShareActivity extends AppCompatActivity {
             int randomNum = ThreadLocalRandom.current().nextInt(1, 10000000 + 1);
             id = "post" + String.valueOf(randomNum);
             DatabaseReference contentRef = firebaseDatabase.getReference("content").child(id);
-            //contentRef.push().setValue(id);
+
             contentRef.child("name").setValue(name);
             contentRef.child("description").setValue(description);
             contentRef.child("location").setValue(location);
             contentRef.child("school").setValue(school);
             Toast.makeText(this, "Data added to DB", Toast.LENGTH_LONG).show();
-
+            contentName.setText("");
+            contentDescription.setText("");
+            contentLocation.setText("");
 //            String id = classReference.push().getKey();
 //            ClassHolder classholder = new ClassHolder(contentname, professorname, credithour, semester);
 //            classReference.child(id).setValue(classholder);
