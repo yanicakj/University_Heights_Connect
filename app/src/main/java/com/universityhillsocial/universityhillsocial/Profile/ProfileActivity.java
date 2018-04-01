@@ -47,6 +47,8 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private ListView classListView;
+    private int classCount;
+    private TextView tvclassCount, displayNameProfile, descriptionProfile, websiteProfile;
 
 
     @Override
@@ -62,32 +64,33 @@ public class ProfileActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        populateClasses();
+        populateFBdata();
         //tempListSetup();
 
     }
 
-    private void tempListSetup() {
-        ArrayList<String> classes = new ArrayList<String>();
-        classes.add("CSC228");
-        classes.add("CSC231");
-        classes.add("CSC235");
-        classes.add("CSC237");
-        classes.add("MTH136");
-        classes.add("MTH221");
-        classes.add("MTH122");
-        classes.add("MTH121");
-        classes.add("CSC112");
-        classes.add("HST101");
+//    private void tempListSetup() {
+//        ArrayList<String> classes = new ArrayList<String>();
+//        classes.add("CSC228");
+//        classes.add("CSC231");
+//        classes.add("CSC235");
+//        classes.add("CSC237");
+//        classes.add("MTH136");
+//        classes.add("MTH221");
+//        classes.add("MTH122");
+//        classes.add("MTH121");
+//        classes.add("CSC112");
+//        classes.add("HST101");
+//
+//        setupProfileListView(classes);
+//    }
 
-        setupProfileListView(classes);
-    }
-
-    private void populateClasses() {
+    private void populateFBdata() {
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference classRef = firebaseDatabase.getReference("users").child("id").child("classes");
-
+        final DatabaseReference userRef = firebaseDatabase.getReference("users").child("id");
         classListView = findViewById(R.id.listViewProfile);
+        classCount = 0;
 
         classRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,10 +98,30 @@ public class ProfileActivity extends AppCompatActivity {
                 ArrayList<ProfileClassItem> classitems = new ArrayList<ProfileClassItem>();
                 for (DataSnapshot classitem : dataSnapshot.getChildren()) {
                     classitems.add(classitem.getValue(ProfileClassItem.class));
+                    classCount++;
                 }
                 ClassAdapter newadapter = new ClassAdapter(ProfileActivity.this, classitems);
                 classListView.setAdapter(newadapter);
+                tvclassCount.setText(String.valueOf(classCount));
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String displayName1 = dataSnapshot.child("firstname").getValue().toString();
+                String descrip = dataSnapshot.child("description").getValue().toString();
+                String web = dataSnapshot.child("website").getValue().toString();
+                Log.d("FBDATA INFO", displayName1 + " " + descrip + " " + web);
+                // TODO : make this work
+//                displayNameProfile.setText(displayName1);
+//                descriptionProfile.setText(descrip);
+//                websiteProfile.setText(web);
             }
 
             @Override
@@ -108,12 +131,12 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void setupProfileListView(ArrayList<String> classes) {
-        ListView listView = findViewById(R.id.listViewProfile);
-
-        ListViewClassAdapter adapter = new ListViewClassAdapter(mContext, R.layout.layout_list_classview, classes);
-        listView.setAdapter(adapter);
-    }
+//    private void setupProfileListView(ArrayList<String> classes) {
+//        ListView listView = findViewById(R.id.listViewProfile);
+//
+//        ListViewClassAdapter adapter = new ListViewClassAdapter(mContext, R.layout.layout_list_classview, classes);
+//        listView.setAdapter(adapter);
+//    }
 
 
     private void setProfileImage() {
@@ -126,7 +149,10 @@ public class ProfileActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.profileProgressBar);
         mProgressBar.setVisibility(View.GONE);
         profilePhoto = findViewById(R.id.profile_photo);
-
+        tvclassCount = findViewById(R.id.tvClasses2);
+        displayNameProfile = findViewById(R.id.displayName);
+        descriptionProfile = findViewById(R.id.descriptionProfile);
+        websiteProfile = findViewById(R.id.websiteProfile);
     }
 
     private void setupToolBar() {

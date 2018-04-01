@@ -151,8 +151,8 @@ public class RegistrationActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        String inputEmailId = inputEmail.substring(0, inputEmail.indexOf("@"));
-        Log.d("inputEmail as Key", "inputEmail is " + inputEmail);
+//        String inputEmailId = inputEmail.substring(0, inputEmail.indexOf("@"));
+        Log.d("Registration to DB", "ATTEMPTING TO ADD DATA TO FBDB");
         DatabaseReference userRef = firebaseDatabase.getReference("users").child(user.getUid());
 
         userRef.child("email").setValue(inputEmail);
