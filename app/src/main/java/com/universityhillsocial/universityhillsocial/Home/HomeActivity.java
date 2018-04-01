@@ -21,6 +21,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //import com.firebase.ui.database.FirebaseListAdapter;
 //import com.firebase.ui.database.FirebaseListOptions;
@@ -92,17 +93,9 @@ public class HomeActivity extends AppCompatActivity {
     private void populateListView() {
 
 
-        final ArrayList<String> eventNames = new ArrayList<String>();
-        final ArrayList<String> eventDescriptions = new ArrayList<String>();
-        final ArrayList<String> eventLocations = new ArrayList<String>();
-        final ArrayList<String> eventSchools = new ArrayList<String>();
-
-        //ArrayList<HomeListViewItem> eventsInfo = new ArrayList<HomeListViewItem>();
-        //EventAdapter adapter = new EventAdapter(this, eventsInfo);
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference eventRef = firebaseDatabase.getReference("content");
 
-        //final ListView listView = findViewById(R.id.homeListView);
         listView = findViewById(R.id.homeListView);
 
         eventRef.addValueEventListener(new ValueEventListener() {
@@ -123,7 +116,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Toast.makeText(HomeActivity.this, "An Error Has Occurred", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -250,12 +243,11 @@ public class HomeActivity extends AppCompatActivity {
         private Context homeContext;
         private LayoutInflater layoutInflater;
         private TextView name, description, location, school;
-        //private String[] titleArray, descriptionArray;
         private ArrayList<HomeListViewItem> eventList;
         private ImageView imageView;
 
 
-        public SimpleAdapter(Context context, ArrayList<HomeListViewItem> events)  //String[] title, String[] description
+        public SimpleAdapter(Context context, ArrayList<HomeListViewItem> events)
         {
             homeContext = context;
             eventList = events;

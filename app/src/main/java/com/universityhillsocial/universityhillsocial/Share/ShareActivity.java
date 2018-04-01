@@ -22,6 +22,8 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.universityhillsocial.universityhillsocial.Home.HomeActivity;
 import com.universityhillsocial.universityhillsocial.R;
 import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewHelper;
+
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -85,8 +87,10 @@ public class ShareActivity extends AppCompatActivity {
 
             firebaseDatabase = FirebaseDatabase.getInstance();
 
-            int randomNum = ThreadLocalRandom.current().nextInt(1, 10000000 + 1);
-            id = "post" + String.valueOf(randomNum);
+            //int randomNum = ThreadLocalRandom.current().nextInt(1, 10000000 + 1);
+            Random random = new Random();
+            int randnum = random.nextInt(10000000) + 1;
+            id = "post" + String.valueOf(randnum);
             DatabaseReference contentRef = firebaseDatabase.getReference("content").child(id);
 
             contentRef.child("name").setValue(name);

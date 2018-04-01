@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,26 +22,29 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText registerEmail, registerPassword, registerFirstName, registerLastName;
+    private EditText registerEmail, registerPassword, registerFirstName, registerLastName,
+        registerClass, registerProfessor, registerSemester;
     private Button registerButton;
     private TextView loginJumpBack;
     private FirebaseAuth firebaseAuth;
-    String inputEmail, inputPassword, inputFirstName, inputLastName;
+    String inputEmail, inputPassword, inputFirstName, inputLastName, inputClass, inputProfessor, inputSemester;
+    private FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        firebaseAuth = FirebaseAuth.getInstance();
         setViews();
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (validate()) {
-                    String user_email = registerEmail.getText().toString().trim();
+                    final String user_email = registerEmail.getText().toString().trim();
                     String user_password = registerPassword.getText().toString().trim();
 
                     firebaseAuth.createUserWithEmailAndPassword(user_email, user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -48,7 +52,8 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 sendEmailVerification();
-                            } else {
+                            }
+                            else {
                                 Toast.makeText(RegistrationActivity.this, "Registration Failed. Please try again!", Toast.LENGTH_LONG).show();
                             }
                         }
@@ -68,6 +73,20 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
+    private void addUserToDB() {
+
+//        firebaseDatabase = FirebaseDatabase.getInstance();
+//
+//        String user_email = registerEmail.getText().toString().trim();
+//        String userId = user_email.substring(0, user_email.indexOf("@"));
+//        DatabaseReference registerRef = firebaseDatabase.getReference("users").child(userId);
+//
+//        registerRef.child("firstname").setValue(registerFirstName.getText().toString().trim());
+//        registerRef.child("lastname").setValue(registerLastName.getText().toString().trim());
+//        registerRef.child("email").setValue(registerEmail.getText().toString().trim());
+
+    }
+
     private void setViews() {
 
         registerButton = findViewById(R.id.RegisterButton);
@@ -76,6 +95,9 @@ public class RegistrationActivity extends AppCompatActivity {
         loginJumpBack = findViewById(R.id.LoginJumpBack);
         registerFirstName = findViewById(R.id.registerFirstName);
         registerLastName = findViewById(R.id.registerLastName);
+        registerClass = findViewById(R.id.registerClass);
+        registerProfessor = findViewById(R.id.registerProfessorName);
+        registerSemester = findViewById(R.id.registerSemester);
 
     }
 
@@ -86,9 +108,15 @@ public class RegistrationActivity extends AppCompatActivity {
         inputPassword = registerPassword.getText().toString().trim();
         inputFirstName = registerFirstName.getText().toString().trim();
         inputLastName = registerLastName.getText().toString().trim();
+        inputClass = registerClass.getText().toString().trim();
+        inputProfessor = registerProfessor.getText().toString().trim();
+        inputSemester = registerSemester.getText().toString().trim();
 
 
-        if (inputEmail.isEmpty() || inputPassword.isEmpty() || inputFirstName.isEmpty() || inputLastName.isEmpty())
+        if (inputEmail.isEmpty() || inputPassword.isEmpty()
+                || inputFirstName.isEmpty() || inputLastName.isEmpty()
+                || inputClass.isEmpty() || inputProfessor.isEmpty()
+                || inputSemester.isEmpty())
             Toast.makeText(this, "Please fill out all of the fields!", Toast.LENGTH_LONG).show();
         else
             filled = true;
@@ -119,10 +147,26 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void sendUserData() {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
-        UserProfile userProfile = new UserProfile(inputEmail, inputFirstName, inputLastName);
-        databaseReference.setValue(userProfile);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        String inputEmailId = inputEmail.substring(0, inputEmail.indexOf("@"));
+        Log.d("inputEmail as Key", "inputEmail is " + inputEmail);
+        DatabaseReference userRef = firebaseDatabase.getReference("users").child(user.getUid());
+
+        userRef.child("email").setValue(inputEmail);
+        userRef.child("firstname").setValue(inputFirstName);
+        userRef.child("lastname").setValue(inputLastName);
+        String newref = userRef.child("classes").push().getKey();
+        userRef.child("classes").child(newref).child("classname").setValue(inputClass);
+        userRef.child("classes").child(newref).child("professorname").setValue(inputProfessor);
+        userRef.child("classes").child(newref).child("semester").setValue(inputSemester);
+
+        // previous test:
+        //DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        //UserProfile userProfile = new UserProfile(inputEmail, inputFirstName, inputLastName);
+        //databaseReference.setValue(userProfile);
     }
 
 }
