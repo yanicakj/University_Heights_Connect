@@ -16,6 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -114,14 +115,14 @@ public class ProfileActivity extends AppCompatActivity {
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String displayName1 = dataSnapshot.child("firstname").getValue().toString();
-                String descrip = dataSnapshot.child("description").getValue().toString();
-                String web = dataSnapshot.child("website").getValue().toString();
-                Log.d("FBDATA INFO", displayName1 + " " + descrip + " " + web);
-                // TODO : make this work
-//                displayNameProfile.setText(displayName1);
-//                descriptionProfile.setText(descrip);
-//                websiteProfile.setText(web);
+                String firstnameFB = dataSnapshot.child("firstname").getValue().toString();
+                String lastnameFB = dataSnapshot.child("lastname").getValue().toString();
+                String descriptionFB = dataSnapshot.child("description").getValue().toString();
+                String websiteFB = dataSnapshot.child("website").getValue().toString();
+
+                displayNameProfile.setText(firstnameFB + " " + lastnameFB);
+                descriptionProfile.setText(descriptionFB);
+                websiteProfile.setText(websiteFB);
             }
 
             @Override
@@ -150,7 +151,7 @@ public class ProfileActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
         profilePhoto = findViewById(R.id.profile_photo);
         tvclassCount = findViewById(R.id.tvClasses2);
-        displayNameProfile = findViewById(R.id.displayName);
+        displayNameProfile = findViewById(R.id.displayNameProfile);
         descriptionProfile = findViewById(R.id.descriptionProfile);
         websiteProfile = findViewById(R.id.websiteProfile);
     }

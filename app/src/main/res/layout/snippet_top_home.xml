@@ -1,0 +1,69 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/white_grey_border_bottom"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profileToolbar">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/topHomeCamera"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_camera"
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true">
+                </LinearLayout>
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/topHomeSearch"
+                    android:hint="Search Posts"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:background="@drawable/search_bar_layout"
+                    android:nextFocusUp="@id/topHomeSearch"
+                    android:nextFocusLeft="@id/topHomeSearch"
+                    android:cursorVisible="false"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/topHomeMessage"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_arrow"
+                    />
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+</merge>

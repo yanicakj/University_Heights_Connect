@@ -9,6 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.EventLog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,8 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +61,10 @@ public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView listView;
     private FirebaseDatabase firebaseDatabase;
-    //private EventAdapter newAdapter;
+    private ProgressBar mProgressBar;
+    private TextWatcher mSearchTw;
+    private EditText searchHomeTop;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +79,18 @@ public class HomeActivity extends AppCompatActivity {
         setViews();
         setupBottomNavigationView();
         populateListView();
-
-
+        setupTextWatcher();
+        searchHomeTop.addTextChangedListener(mSearchTw);
+        // TODO : add SendBird messaging
 
     }
 
     private void setViews() {
         //toolbar = findViewById(R.id.toolbar);
+        mProgressBar = findViewById(R.id.homeProgressBar);
+        mProgressBar.setVisibility(View.GONE);
         listView = findViewById(R.id.homeListView);
+        searchHomeTop = findViewById(R.id.topHomeSearch);
 
     }
 
@@ -120,6 +131,25 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setupTextWatcher() {
+        mSearchTw = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Toast.makeText(HomeActivity.this, "Changed value of search", Toast.LENGTH_SHORT).show();
+                // TODO : add filtering below
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
     }
 
 //    public class EventAdapter extends ArrayAdapter<HomeListViewItem> {

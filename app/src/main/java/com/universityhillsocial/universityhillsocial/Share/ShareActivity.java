@@ -87,24 +87,22 @@ public class ShareActivity extends AppCompatActivity {
 
             firebaseDatabase = FirebaseDatabase.getInstance();
 
-            //int randomNum = ThreadLocalRandom.current().nextInt(1, 10000000 + 1);
-            Random random = new Random();
-            int randnum = random.nextInt(10000000) + 1;
-            id = "post" + String.valueOf(randnum);
+            //Random random = new Random();
+            //int randnum = random.nextInt(10000000) + 1;
+            //id = "post" + String.valueOf(randnum);
+
+            id = firebaseDatabase.getReference("content").push().getKey();
             DatabaseReference contentRef = firebaseDatabase.getReference("content").child(id);
 
             contentRef.child("name").setValue(name);
             contentRef.child("description").setValue(description);
             contentRef.child("location").setValue(location);
             contentRef.child("school").setValue(school);
-            Toast.makeText(this, "Data added to DB", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your info has been posted!", Toast.LENGTH_LONG).show();
             contentName.setText("");
             contentDescription.setText("");
             contentLocation.setText("");
-//            String id = classReference.push().getKey();
-//            ClassHolder classholder = new ClassHolder(contentname, professorname, credithour, semester);
-//            classReference.child(id).setValue(classholder);
-//            Toast.makeText(this, "Data added to DB", Toast.LENGTH_LONG).show();
+
         }
         else {
             Toast.makeText(this, "Please fill out all of the fields!", Toast.LENGTH_LONG).show();
