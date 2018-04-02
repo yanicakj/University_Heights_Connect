@@ -82,7 +82,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AccountSettingsActivity.this, EditProfileFragment.class));
+                startActivity(new Intent(AccountSettingsActivity.this, EditProfileActivity.class));
             }
         });
 

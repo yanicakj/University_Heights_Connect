@@ -66,25 +66,10 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         populateFBdata();
-        //tempListSetup();
+
 
     }
 
-//    private void tempListSetup() {
-//        ArrayList<String> classes = new ArrayList<String>();
-//        classes.add("CSC228");
-//        classes.add("CSC231");
-//        classes.add("CSC235");
-//        classes.add("CSC237");
-//        classes.add("MTH136");
-//        classes.add("MTH221");
-//        classes.add("MTH122");
-//        classes.add("MTH121");
-//        classes.add("CSC112");
-//        classes.add("HST101");
-//
-//        setupProfileListView(classes);
-//    }
 
     private void populateFBdata() {
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -131,13 +116,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-
-//    private void setupProfileListView(ArrayList<String> classes) {
-//        ListView listView = findViewById(R.id.listViewProfile);
-//
-//        ListViewClassAdapter adapter = new ListViewClassAdapter(mContext, R.layout.layout_list_classview, classes);
-//        listView.setAdapter(adapter);
-//    }
 
 
     private void setProfileImage() {

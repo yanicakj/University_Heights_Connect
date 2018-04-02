@@ -2,23 +2,17 @@ package com.universityhillsocial.universityhillsocial.Home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.EventLog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,27 +24,21 @@ import android.widget.Toast;
 //import com.firebase.ui.database.FirebaseListAdapter;
 //import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.universityhillsocial.universityhillsocial.MainActivity;
-import com.universityhillsocial.universityhillsocial.OldProfileActivity;
 import com.universityhillsocial.universityhillsocial.R;
 import com.universityhillsocial.universityhillsocial.SettingsActivity;
 import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewHelper;
-import com.universityhillsocial.universityhillsocial.utils.SectionsPagerAdapter;
 import com.universityhillsocial.universityhillsocial.utils.UniversalImageLoader;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -73,7 +61,6 @@ public class HomeActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: Starting");
 
         initImageLoader(); // needed right now for profile activity error
-        //initToolbar();
         //setupViewPager();
         firebaseAuth = FirebaseAuth.getInstance();
         setViews();
@@ -85,8 +72,8 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+
     private void setViews() {
-        //toolbar = findViewById(R.id.toolbar);
         mProgressBar = findViewById(R.id.homeProgressBar);
         mProgressBar.setVisibility(View.GONE);
         listView = findViewById(R.id.homeListView);
@@ -94,15 +81,8 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-//    private void initToolbar() {
-//        setSupportActionBar(R.id.);
-//        getSupportActionBar().setTitle("Put Search Here");
-//
-//    }
-
 
     private void populateListView() {
-
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference eventRef = firebaseDatabase.getReference("content");
@@ -118,6 +98,7 @@ public class HomeActivity extends AppCompatActivity {
                     //eventNames.add(event.child("name").getValue().toString());
 
                 }
+                Collections.reverse(eventsInfo);
                 SimpleAdapter newAdapter = new SimpleAdapter(HomeActivity.this, eventsInfo);
                 //newAdapter = new EventAdapter(HomeActivity.this, eventsInfo);
                 //ArrayAdapter<HomeListViewItem> arrayAdapter = new ArrayAdapter(HomeActivity.this, R.layout.home_activity_single_item, R.id.nameHomeTextView, eventsInfo);
@@ -150,90 +131,6 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         };
-    }
-
-//    public class EventAdapter extends ArrayAdapter<HomeListViewItem> {
-//
-//        private Context mContext;
-//        private List<HomeListViewItem> mEvents = new ArrayList<>();
-//
-//        public EventAdapter(Context context, ArrayList<HomeListViewItem> events) {
-//            super(context, 0, events);
-//            mContext = context;
-//            mEvents = events;
-//        }
-//
-//        @NonNull
-//        @Override
-//        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//
-//            View listItem = convertView;
-//
-//            //HomeListViewItem event = getItem(position);
-//
-//            if (convertView == null) {
-//                convertView = LayoutInflater.from(mContext).inflate(R.layout.home_activity_single_item, parent, false);
-//            }
-//
-//            HomeListViewItem currentItem = mEvents.get(position);
-//
-//            TextView eventName = listItem.findViewById(R.id.nameHomeTextView);
-//            eventName.setText(currentItem.getName());
-//            TextView eventDescription = listItem.findViewById(R.id.homeDescriptionTextView);
-//            eventDescription.setText(currentItem.getDescription());
-//            TextView eventLocation = listItem.findViewById(R.id.locationHomeTextView);
-//            eventLocation.setText(currentItem.getLocation());
-//            TextView eventSchool = listItem.findViewById(R.id.schoolHomeTextView);
-//            eventSchool.setText(currentItem.getSchool());
-//
-//            //eventName.setText(event.name);
-//            //eventDescription.setText(event.description);
-//            //eventLocation.setText(event.location);
-//            //eventSchool.setText(event.school);
-//
-//            return convertView;
-//        }
-//    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch(item.getItemId()) {
-            case R.id.logoutMenu: {
-                logout();
-                break;
-            }
-            case R.id.settingsMenu: {
-                settings();
-                break;
-            }
-            case R.id.oldprofileMenu: {
-                profile();
-                break;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void logout() {
-        firebaseAuth.signOut();
-        finish();
-        startActivity(new Intent(HomeActivity.this, MainActivity.class));
-    }
-
-    private void settings() {
-        startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
-    }
-
-    private void profile() {
-        finish();
-        startActivity(new Intent(HomeActivity.this, OldProfileActivity.class));
     }
 
     private void setupBottomNavigationView() {
@@ -313,6 +210,15 @@ public class HomeActivity extends AppCompatActivity {
             description.setText(eventList.get(position).getDescription());
             location.setText(eventList.get(position).getLocation());
             school.setText(eventList.get(position).getSchool());
+
+            if (school.getText().toString().trim().equals("Essex County College")) {
+                imageView.setImageResource(R.drawable.ecclogo);
+            } else if (school.getText().toString().trim().equals("New Jersey Institute of Technology")) {
+                imageView.setImageResource(R.drawable.njitlogo);
+            } else {
+                imageView.setImageResource(R.drawable.rutgerslogo);
+            }
+
             return convertView;
         }
     }

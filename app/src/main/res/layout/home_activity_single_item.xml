@@ -1,24 +1,51 @@
 <android.support.v7.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorAccent"
     android:elevation="4dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/nameHomeTextView"
-            android:layout_marginLeft="10dp"
-            android:textSize="24dp"
-            android:text="Main Text"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:textColor="@color/black"
-            />
+            android:id="@+id/topRelLayout">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/homePosterImage"
+                app:civ_border_color="@color/grey"
+                app:civ_border_width="2dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/aclloyd"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameHomeTextView"
+                android:layout_marginLeft="10dp"
+                android:textSize="24dp"
+                android:text="Main Text"
+                android:layout_toRightOf="@id/homePosterImage"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:paddingRight="10dp"
+                />
+
+
+        </RelativeLayout>
+
+
 
         <ImageView
             android:layout_width="match_parent"
@@ -28,7 +55,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:src="@drawable/njitlogo"
-            android:layout_below="@id/nameHomeTextView"
+            android:layout_below="@id/topRelLayout"
             />
 
         <TextView
@@ -59,8 +86,10 @@
             android:layout_marginLeft="10dp"
             android:text="School"
             android:textSize="14sp"
+            android:textStyle="bold"
             android:layout_below="@id/locationHomeTextView"
-            android:id="@+id/schoolHomeTextView"/>
+            android:id="@+id/schoolHomeTextView"
+            android:layout_marginBottom="12dp"/>
 
     </RelativeLayout>
 

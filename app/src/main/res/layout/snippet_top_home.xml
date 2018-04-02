@@ -25,7 +25,7 @@
                     android:layout_centerVertical="true"
                     android:id="@+id/topHomeCamera"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/ic_camera"
+                    android:src="@drawable/ic_school2"
                     />
 
                 <LinearLayout

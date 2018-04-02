@@ -9,10 +9,8 @@ import android.view.MenuItem;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.universityhillsocial.universityhillsocial.Home.HomeActivity;
-import com.universityhillsocial.universityhillsocial.Likes.LikesActivity;
 import com.universityhillsocial.universityhillsocial.Profile.ProfileActivity;
 import com.universityhillsocial.universityhillsocial.R;
-import com.universityhillsocial.universityhillsocial.Search.SearchActivity;
 import com.universityhillsocial.universityhillsocial.Share.ShareActivity;
 
 /**

@@ -45,6 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/homeListView"
+                android:divider="@color/grey"
+                android:dividerHeight="10dp"
                 >
 
             </ListView>

@@ -22,15 +22,12 @@
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".PasswordActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".OldProfileActivity" />
-        <activity android:name=".EditProfileActivity" />
         <activity android:name=".Search.SearchActivity" />
         <activity android:name=".Share.ShareActivity" />
-        <activity android:name=".Likes.LikesActivity" />
         <activity android:name=".Profile.ProfileActivity" />
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".Profile.AccountSettingsActivity" />
-
+        <activity android:name=".Profile.EditProfileActivity"></activity>
     </application>
 
 </manifest>
