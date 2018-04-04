@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
     private ListView classListView;
     private int classCount;
     private TextView tvclassCount, displayNameProfile, descriptionProfile, websiteProfile;
+    // TODO : Add major and email -- scrap description and website
+
+
 
 
     @Override
@@ -73,8 +77,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void populateFBdata() {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference classRef = firebaseDatabase.getReference("users").child("id").child("classes");
-        final DatabaseReference userRef = firebaseDatabase.getReference("users").child("id");
+        FirebaseUser firebaseUser;
+        firebaseUser = firebaseAuth.getCurrentUser();
+        DatabaseReference classRef = firebaseDatabase.getReference("users").child(firebaseUser.getUid()).child("classes");
+        final DatabaseReference userRef = firebaseDatabase.getReference("users").child(firebaseUser.getUid());
         classListView = findViewById(R.id.listViewProfile);
         classCount = 0;
 
@@ -137,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
     private void setupToolBar() {
         Toolbar toolbar = findViewById(R.id.profileToolbar);
         setSupportActionBar(toolbar);
-
+        Log.d(TAG, "Setting up toolbar");
         ImageView profileMenu = findViewById(R.id.topProfileBarMenu);
         profileMenu.setOnClickListener(new View.OnClickListener() {
             @Override

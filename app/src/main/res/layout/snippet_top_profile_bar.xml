@@ -24,7 +24,7 @@
                     android:id="@+id/topProfileDeadlineIcon"
                     android:src="@drawable/ic_school"
                     android:layout_toLeftOf="@id/topProfileBarMenu"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="30dp"
                     />
 
 
