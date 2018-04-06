@@ -6,6 +6,8 @@ import com.universityhillsocial.universityhillsocial.R;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    // TODO : add firebase functionality
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

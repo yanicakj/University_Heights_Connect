@@ -23,7 +23,7 @@
                     android:layout_height="30dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:id="@+id/topHomeCamera"
+                    android:id="@+id/topHomeDeadlines"
                     android:layout_marginStart="10dp"
                     android:src="@drawable/ic_school2"
                     />

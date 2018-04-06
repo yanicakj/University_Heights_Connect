@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.universityhillsocial.universityhillsocial.DeadlineActivity;
 import com.universityhillsocial.universityhillsocial.MainActivity;
 import com.universityhillsocial.universityhillsocial.R;
 import com.universityhillsocial.universityhillsocial.SettingsActivity;
@@ -54,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextWatcher mSearchTw;
     private EditText searchHomeTop;
     private FirebaseUser firebaseUser;
+    private ImageView deadlinesIcon;
 
 
     @Override
@@ -71,6 +73,12 @@ public class HomeActivity extends AppCompatActivity {
         searchHomeTop.addTextChangedListener(mSearchTw);
         checkUserInFB();
 
+        deadlinesIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, DeadlineActivity.class));
+            }
+        });
 
     }
 
@@ -80,6 +88,7 @@ public class HomeActivity extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
         listView = findViewById(R.id.homeListView);
         searchHomeTop = findViewById(R.id.topHomeSearch);
+        deadlinesIcon = findViewById(R.id.topHomeDeadlines);
 
     }
 
@@ -232,12 +241,14 @@ public class HomeActivity extends AppCompatActivity {
         userReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean newuser = true;
                 for (DataSnapshot singleuser : dataSnapshot.getChildren()) {
-                    if (singleuser.getKey().toString().trim().equals(firebaseUser.getUid())) {
+                    if (singleuser.getKey().equals(firebaseUser.getUid())) {
+                        newuser = false;
                     }
-                    else {
-                        addUserToFBDB();
-                    }
+                }
+                if (newuser) {
+                    addUserToFBDB();
                 }
             }
 
@@ -254,7 +265,7 @@ public class HomeActivity extends AppCompatActivity {
         userReference.child(firebaseUser.getUid()).child("firstname").setValue("Update Your");
         userReference.child(firebaseUser.getUid()).child("lastname").setValue("Profile Info!");
         userReference.child(firebaseUser.getUid()).child("major").setValue("Major Note Declared Yet");
-        userReference.child(firebaseUser.getUid()).child("email").setValue("Major Note Declared Yet");
+        userReference.child(firebaseUser.getUid()).child("email").setValue("Add your email!");
 
     }
 

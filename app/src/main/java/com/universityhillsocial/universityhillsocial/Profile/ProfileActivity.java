@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.universityhillsocial.universityhillsocial.DeadlineActivity;
 import com.universityhillsocial.universityhillsocial.R;
 import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewHelper;
 import com.universityhillsocial.universityhillsocial.utils.ListViewClassAdapter;
@@ -141,16 +142,26 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void setupToolBar() {
+
         Toolbar toolbar = findViewById(R.id.profileToolbar);
         setSupportActionBar(toolbar);
         Log.d(TAG, "Setting up toolbar");
         ImageView profileMenu = findViewById(R.id.topProfileBarMenu);
+        ImageView deadlineIcon = findViewById(R.id.topProfileDeadlineIcon);
+
         profileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Navigating to Account Settings");
                 Intent intent = new Intent(mContext, AccountSettingsActivity.class);
                 startActivity(intent);
+            }
+        });
+        deadlineIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Navigating to Deadlines Activity");
+                startActivity(new Intent(ProfileActivity.this, DeadlineActivity.class));
             }
         });
 
