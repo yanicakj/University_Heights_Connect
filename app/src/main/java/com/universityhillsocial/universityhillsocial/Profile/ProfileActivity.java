@@ -50,8 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ListView classListView;
     private int classCount;
-    private TextView tvclassCount, displayNameProfile, descriptionProfile, websiteProfile;
-    // TODO : Add major and email -- scrap description and website
+    private TextView tvclassCount, displayNameProfile, majorProfile, emailProfile;
 
 
 
@@ -77,7 +76,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void populateFBdata() {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        FirebaseUser firebaseUser;
+        final FirebaseUser firebaseUser;
         firebaseUser = firebaseAuth.getCurrentUser();
         DatabaseReference classRef = firebaseDatabase.getReference("users").child(firebaseUser.getUid()).child("classes");
         final DatabaseReference userRef = firebaseDatabase.getReference("users").child(firebaseUser.getUid());
@@ -108,12 +107,13 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String firstnameFB = dataSnapshot.child("firstname").getValue().toString();
                 String lastnameFB = dataSnapshot.child("lastname").getValue().toString();
-                String descriptionFB = dataSnapshot.child("description").getValue().toString();
-                String websiteFB = dataSnapshot.child("website").getValue().toString();
+                String majorFB = dataSnapshot.child("major").getValue().toString();
+                //String emailFB = dataSnapshot.child("website").getValue().toString();
+                String emailFB = firebaseUser.getEmail();
 
                 displayNameProfile.setText(firstnameFB + " " + lastnameFB);
-                descriptionProfile.setText(descriptionFB);
-                websiteProfile.setText(websiteFB);
+                majorProfile.setText(majorFB);
+                emailProfile.setText(emailFB);
             }
 
             @Override
@@ -136,8 +136,8 @@ public class ProfileActivity extends AppCompatActivity {
         profilePhoto = findViewById(R.id.profile_photo);
         tvclassCount = findViewById(R.id.tvClasses2);
         displayNameProfile = findViewById(R.id.displayNameProfile);
-        descriptionProfile = findViewById(R.id.descriptionProfile);
-        websiteProfile = findViewById(R.id.websiteProfile);
+        majorProfile = findViewById(R.id.majorProfile);
+        emailProfile = findViewById(R.id.emailProfile);
     }
 
     private void setupToolBar() {

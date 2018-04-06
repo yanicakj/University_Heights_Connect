@@ -42,7 +42,7 @@ public class ShareActivity extends AppCompatActivity {
     private EditText contentName, contentDescription, contentLocation;
     private Spinner schools;
     private Button addContentButton;
-    private DatabaseReference classReference;
+    //private DatabaseReference classReference;
     private FirebaseDatabase firebaseDatabase;
 
 
@@ -55,7 +55,7 @@ public class ShareActivity extends AppCompatActivity {
         setupBottomNavigationView();
         setViews();
         topBarIcon = findViewById(R.id.topShareBarMenu);
-        classReference = FirebaseDatabase.getInstance().getReference("classes");
+        //classReference = FirebaseDatabase.getInstance().getReference("classes");
 
         addContentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +94,7 @@ public class ShareActivity extends AppCompatActivity {
             id = firebaseDatabase.getReference("content").push().getKey();
             DatabaseReference contentRef = firebaseDatabase.getReference("content").child(id);
 
+            // TODO : connect post to user UID
             contentRef.child("name").setValue(name);
             contentRef.child("description").setValue(description);
             contentRef.child("location").setValue(location);

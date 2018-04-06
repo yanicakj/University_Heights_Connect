@@ -24,6 +24,7 @@ import android.widget.Toast;
 //import com.firebase.ui.database.FirebaseListAdapter;
 //import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private TextWatcher mSearchTw;
     private EditText searchHomeTop;
+    private FirebaseUser firebaseUser;
 
 
     @Override
@@ -59,7 +61,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Log.d(TAG, "onCreate: Starting");
-
         initImageLoader(); // needed right now for profile activity error
         //setupViewPager();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -68,7 +69,8 @@ public class HomeActivity extends AppCompatActivity {
         populateListView();
         setupTextWatcher();
         searchHomeTop.addTextChangedListener(mSearchTw);
-        // TODO : add SendBird messaging
+        checkUserInFB();
+
 
     }
 
@@ -81,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-
+    // TODO : Change to RecyclerView
     private void populateListView() {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -223,5 +225,37 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    private void checkUserInFB() {
+
+        firebaseUser = firebaseAuth.getCurrentUser();
+        DatabaseReference userReference = firebaseDatabase.getReference("users");
+        userReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleuser : dataSnapshot.getChildren()) {
+                    if (singleuser.getKey().toString().trim().equals(firebaseUser.getUid())) {
+                    }
+                    else {
+                        addUserToFBDB();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void addUserToFBDB() {
+        DatabaseReference userReference = firebaseDatabase.getReference("users");
+        userReference.child(firebaseUser.getUid()).child("firstname").setValue("Update Your");
+        userReference.child(firebaseUser.getUid()).child("lastname").setValue("Profile Info!");
+        userReference.child(firebaseUser.getUid()).child("major").setValue("Major Note Declared Yet");
+        userReference.child(firebaseUser.getUid()).child("email").setValue("Major Note Declared Yet");
+
+    }
 
 }

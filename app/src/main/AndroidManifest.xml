@@ -27,7 +27,8 @@
         <activity android:name=".Profile.ProfileActivity" />
         <activity android:name=".UpdatePasswordActivity" />
         <activity android:name=".Profile.AccountSettingsActivity" />
-        <activity android:name=".Profile.EditProfileActivity"></activity>
+        <activity android:name=".Profile.EditProfileActivity" />
+        <activity android:name=".DeadlineActivity" />
     </application>
 
 </manifest>
