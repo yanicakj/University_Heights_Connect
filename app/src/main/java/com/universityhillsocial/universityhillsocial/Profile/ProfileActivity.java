@@ -51,7 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ListView classListView;
     private int classCount;
-    private TextView tvclassCount, displayNameProfile, majorProfile, emailProfile;
+    private TextView tvclassCount, displayNameProfile, majorProfile, emailProfile, editProfileSquare;
 
 
 
@@ -71,6 +71,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         populateFBdata();
 
+        editProfileSquare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
+            }
+        });
 
     }
 
@@ -92,6 +98,7 @@ public class ProfileActivity extends AppCompatActivity {
                     classitems.add(classitem.getValue(ProfileClassItem.class));
                     classCount++;
                 }
+                // TODO : add last row option "Add a class"
                 ClassAdapter newadapter = new ClassAdapter(ProfileActivity.this, classitems);
                 classListView.setAdapter(newadapter);
                 tvclassCount.setText(String.valueOf(classCount));
@@ -139,6 +146,7 @@ public class ProfileActivity extends AppCompatActivity {
         displayNameProfile = findViewById(R.id.displayNameProfile);
         majorProfile = findViewById(R.id.majorProfile);
         emailProfile = findViewById(R.id.emailProfile);
+        editProfileSquare = findViewById(R.id.textEditProfile);
     }
 
     private void setupToolBar() {

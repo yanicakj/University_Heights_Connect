@@ -264,7 +264,7 @@ public class HomeActivity extends AppCompatActivity {
         DatabaseReference userReference = firebaseDatabase.getReference("users");
         userReference.child(firebaseUser.getUid()).child("firstname").setValue("Update Your");
         userReference.child(firebaseUser.getUid()).child("lastname").setValue("Profile Info!");
-        userReference.child(firebaseUser.getUid()).child("major").setValue("Major Note Declared Yet");
+        userReference.child(firebaseUser.getUid()).child("major").setValue("Major Not Declared Yet!");
         userReference.child(firebaseUser.getUid()).child("email").setValue("Add your email!");
 
     }

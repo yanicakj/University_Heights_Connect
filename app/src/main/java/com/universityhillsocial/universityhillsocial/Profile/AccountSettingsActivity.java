@@ -40,8 +40,6 @@ public class AccountSettingsActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private RelativeLayout mRelativeLayout;
     private static final int ACITVITY_NUM = 2;//4;
-
-    //just for demo
     private FirebaseAuth firebaseAuth;
     private TextView editProfile, signOut;
 
@@ -59,7 +57,6 @@ public class AccountSettingsActivity extends AppCompatActivity {
         //setupSettingsList();
         //setupFragments();
 
-        //fore demo
         firebaseAuth = FirebaseAuth.getInstance();
 
         // Setting up back arrow

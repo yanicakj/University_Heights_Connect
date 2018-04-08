@@ -55,17 +55,15 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_username" />
 
-
-                <!-- TODO : change to first name -->
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/username"
+                    android:id="@+id/editProfileFirstName"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
                     android:background="@null"
                     android:inputType="textNoSuggestions"
-                    android:hint="username"
+                    android:hint="first name"
                     />
 
             </RelativeLayout>
@@ -86,17 +84,15 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_displayname" />
 
-                <!-- TODO : change to lastname -->
-
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/displayName"
+                    android:id="@+id/editProfileLastName"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
                     android:background="@null"
                     android:inputType="textNoSuggestions"
-                    android:hint="display name"
+                    android:hint="last name"
                     />
 
 
@@ -116,63 +112,101 @@
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_website" />
-
-                <!-- TODO : change to major -->
+                    android:src="@drawable/ic_school" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/website"
+                    android:id="@+id/editProfileMajor"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
                     android:background="@null"
                     android:inputType="textNoSuggestions"
-                    android:hint="website"
+                    android:hint="major"
                     />
 
             </RelativeLayout>
 
             <!-- Description section -->
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_below="@id/relLayout3"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:background="@drawable/grey_border_bottom"-->
+                <!--android:id="@+id/relLayout4"-->
+                <!--&gt;-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="35dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:src="@drawable/ic_description" />-->
+
+                <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/description"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="40dp"-->
+                    <!--android:background="@null"-->
+                    <!--android:inputType="textNoSuggestions"-->
+                    <!--android:hint="description"-->
+                    <!--/>-->
+
+            <!--</RelativeLayout>-->
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_below="@id/relLayout3"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/grey_border_bottom"
+                android:layout_height="wrap_content"
                 android:id="@+id/relLayout4"
-                >
+                android:layout_below="@id/relLayout3"
+                android:layout_marginTop="20dp">
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_description" />
-
-                <!-- TODO : change to email -->
-
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/description"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="40dp"
-                    android:background="@null"
-                    android:inputType="textNoSuggestions"
-                    android:hint="description"
+                    android:id="@+id/editProfileContentText"
+                    android:text="Edit Your Content"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:background="@drawable/grey_border_bottom"
                     />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editProfileRemoveClassButton"
+                    android:text="Remove a Class"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/editProfileContentText"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editProfileRemovePostButton"
+                    android:text="Remove a Post"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_below="@id/editProfileContentText"
+                    android:layout_marginTop="15dp"
+                    />
+
 
             </RelativeLayout>
 
-            <!-- TODO : remove everything under here -->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:text="PRIVATE INFORMATION"
+                android:textSize="22dp"
+                android:text="Private Information"
                 android:layout_below="@id/relLayout4"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="25dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:textAlignment="center"
@@ -182,39 +216,39 @@
                 />
 
             <!-- Email section -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_below="@id/textPrivateInfo"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/grey_border_bottom"
-                android:id="@+id/relLayout5"
-                >
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_below="@id/textPrivateInfo"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:background="@drawable/grey_border_bottom"-->
+                <!--android:id="@+id/relLayout5"-->
+                <!--&gt;-->
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_email" />
+                <!--<ImageView-->
+                    <!--android:layout_width="35dp"-->
+                    <!--android:layout_height="35dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:src="@drawable/ic_email" />-->
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/email"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="40dp"
-                    android:background="@null"
-                    android:inputType="textNoSuggestions"
-                    android:hint="email"
-                    />
+                <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/email"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="40dp"-->
+                    <!--android:background="@null"-->
+                    <!--android:inputType="textNoSuggestions"-->
+                    <!--android:hint="email"-->
+                    <!--/>-->
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
             <!-- Phone section -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_below="@id/relLayout5"
+                android:layout_below="@id/textPrivateInfo"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/grey_border_bottom"
                 android:id="@+id/relLayout6"
@@ -229,7 +263,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/phoneNumber"
+                    android:id="@+id/editProfilePhone"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
                     android:background="@null"

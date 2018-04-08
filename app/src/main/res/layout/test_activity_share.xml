@@ -7,6 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         >
 
         <include layout="@layout/test_snippet_top_share"/>
@@ -67,7 +68,8 @@
             android:entries="@array/schools"
             android:textAlignment="center"
             android:layout_marginTop="15dp"
-            android:id="@+id/school">
+            android:id="@+id/school"
+            >
         </Spinner>
 
         <Button

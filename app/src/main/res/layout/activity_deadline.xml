@@ -37,6 +37,7 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:textSize="20sp" />
+        <!-- TODO : make all these text sizes slightly larger -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

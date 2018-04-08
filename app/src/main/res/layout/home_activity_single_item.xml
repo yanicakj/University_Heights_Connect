@@ -65,6 +65,7 @@
             android:layout_below="@+id/imageViewHome"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
+            android:paddingRight="10dp"
             android:textSize="16dp"
             android:text="Description Text"
             android:textColor="@color/black"
@@ -78,6 +79,7 @@
             android:layout_below="@id/homeDescriptionTextView"
             android:text="Location"
             android:layout_marginLeft="10dp"
+            android:paddingRight="10dp"
             />
 
         <TextView

@@ -29,6 +29,7 @@
         <activity android:name=".Profile.AccountSettingsActivity" />
         <activity android:name=".Profile.EditProfileActivity" />
         <activity android:name=".DeadlineActivity" />
+        <activity android:name=".Profile.RemoveClassActivity"></activity>
     </application>
 
 </manifest>

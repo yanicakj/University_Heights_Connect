@@ -22,9 +22,9 @@
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
                     android:id="@+id/topProfileDeadlineIcon"
-                    android:src="@drawable/ic_school"
+                    android:src="@drawable/ic_school2"
                     android:layout_toLeftOf="@id/topProfileBarMenu"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="34dp"
                     />
 
 
