@@ -2,6 +2,7 @@ package com.universityhillsocial.universityhillsocial.Home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,14 +34,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.universityhillsocial.universityhillsocial.DeadlineActivity;
-import com.universityhillsocial.universityhillsocial.MainActivity;
 import com.universityhillsocial.universityhillsocial.R;
-import com.universityhillsocial.universityhillsocial.SettingsActivity;
 import com.universityhillsocial.universityhillsocial.utils.BottomNavigationViewHelper;
 import com.universityhillsocial.universityhillsocial.utils.UniversalImageLoader;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextWatcher mSearchTw;
     private EditText searchHomeTop;
     private FirebaseUser firebaseUser;
-    private ImageView deadlinesIcon;
+    private ImageView deadlinesIcon, messagesIcon;
 
 
     @Override
@@ -63,8 +63,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Log.d(TAG, "onCreate: Starting");
+
         initImageLoader(); // needed right now for profile activity error
-        //setupViewPager();
         firebaseAuth = FirebaseAuth.getInstance();
         setViews();
         setupBottomNavigationView();
@@ -73,13 +73,7 @@ public class HomeActivity extends AppCompatActivity {
         searchHomeTop.addTextChangedListener(mSearchTw);
         checkUserInFB();
 
-        deadlinesIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, DeadlineActivity.class));
-            }
-        });
-
+        setOnClickListeners();
     }
 
 
@@ -89,10 +83,11 @@ public class HomeActivity extends AppCompatActivity {
         listView = findViewById(R.id.homeListView);
         searchHomeTop = findViewById(R.id.topHomeSearch);
         deadlinesIcon = findViewById(R.id.topHomeDeadlines);
+        messagesIcon = findViewById(R.id.topHomeMessage);
 
     }
 
-    // TODO : Change to RecyclerView
+    // TODO : Change to RecyclerView ...maybe
     private void populateListView() {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -106,14 +101,9 @@ public class HomeActivity extends AppCompatActivity {
                 ArrayList<HomeListViewItem> eventsInfo = new ArrayList<HomeListViewItem>();
                 for (DataSnapshot event : dataSnapshot.getChildren()) {
                     eventsInfo.add(event.getValue(HomeListViewItem.class));
-                    //eventNames.add(event.child("name").getValue().toString());
-
                 }
                 Collections.reverse(eventsInfo);
                 SimpleAdapter newAdapter = new SimpleAdapter(HomeActivity.this, eventsInfo);
-                //newAdapter = new EventAdapter(HomeActivity.this, eventsInfo);
-                //ArrayAdapter<HomeListViewItem> arrayAdapter = new ArrayAdapter(HomeActivity.this, R.layout.home_activity_single_item, R.id.nameHomeTextView, eventsInfo);
-                //ArrayAdapter<HomeListViewItem> arrayAdapter = new ArrayAdapter(HomeActivity.this, R.layout.home_activity_single_item, R.id.nameHomeTextView, eventNames);
                 listView.setAdapter(newAdapter);
             }
 
@@ -155,20 +145,6 @@ public class HomeActivity extends AppCompatActivity {
         menuItem.setChecked(true);
     }
 
-//    // Responsible for adding the 3 tabs on top bar: camera, home, and messages
-//    private void setupViewPager() {
-//        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-//        //adapter.addFragment(new CameraFragment());
-//        adapter.addFragment(new HomeFragment());
-//        adapter.addFragment(new MessagesFragment());
-//        ViewPager viewPager = findViewById(R.id.container);
-//        viewPager.setAdapter(adapter);
-//        TabLayout tabLayout = findViewById(R.id.tabs);
-//        tabLayout.setupWithViewPager(viewPager);
-//        //tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
-//        tabLayout.getTabAt(0).setIcon(R.drawable.ic_earth); // index 1
-//        tabLayout.getTabAt(1).setIcon(R.drawable.ic_arrow); // index 2
-//    }
 
     private void initImageLoader() {
         UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
@@ -227,7 +203,7 @@ public class HomeActivity extends AppCompatActivity {
             } else if (school.getText().toString().trim().equals("New Jersey Institute of Technology")) {
                 imageView.setImageResource(R.drawable.njitlogo);
             } else {
-                imageView.setImageResource(R.drawable.rutgerslogo);
+                imageView.setImageResource(R.drawable.rutgerspictwo);
             }
 
             return convertView;
@@ -265,8 +241,48 @@ public class HomeActivity extends AppCompatActivity {
         userReference.child(firebaseUser.getUid()).child("firstname").setValue("Update Your");
         userReference.child(firebaseUser.getUid()).child("lastname").setValue("Profile Info!");
         userReference.child(firebaseUser.getUid()).child("major").setValue("Major Not Declared Yet!");
-        userReference.child(firebaseUser.getUid()).child("email").setValue("Add your email!");
+        userReference.child(firebaseUser.getUid()).child("school").setValue("none");
+        userReference.child(firebaseUser.getUid()).child("email").setValue(firebaseUser.getEmail());
 
+
+    }
+
+    private void setOnClickListeners() {
+
+        final String[] messages = {
+                "Have a great day!",
+                "Don't forget to smile!",
+                "You got this!",
+                "Never quit!",
+                "Don't give up!",
+                "You're almost there!",
+                "Get that degree!",
+                "You miss 99% of the shots you don't take!",
+                "The best preparation for tomorrow is doing your best today!",
+                "Believe. Achieve. Succeed!"
+                };
+
+        deadlinesIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, DeadlineActivity.class));
+            }
+        });
+
+        messagesIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Random ran = new Random();
+                int spot = ran.nextInt(10);
+                String message = messages[spot];
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                builder.setMessage(message);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
     }
 
 }

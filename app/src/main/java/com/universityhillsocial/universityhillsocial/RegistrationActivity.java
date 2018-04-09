@@ -27,8 +27,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private TextView loginJumpBack;
     private FirebaseAuth firebaseAuth;
     String inputEmail, inputPassword, inputFirstName, inputLastName;
-    private FirebaseDatabase firebaseDatabase;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +78,8 @@ public class RegistrationActivity extends AppCompatActivity {
         registerEmail = findViewById(R.id.registerEmail);
         registerPassword = findViewById(R.id.registerPassword);
         loginJumpBack = findViewById(R.id.LoginJumpBack);
-        registerFirstName = findViewById(R.id.registerFirstName);
-        registerLastName = findViewById(R.id.registerLastName);
+        //registerFirstName = findViewById(R.id.registerFirstName);
+        //registerLastName = findViewById(R.id.registerLastName);
         //registerMajor = findViewById(R.id.registerMajor);
 
     }
@@ -91,13 +89,12 @@ public class RegistrationActivity extends AppCompatActivity {
         Boolean filled = false;
         inputEmail = registerEmail.getText().toString().trim();
         inputPassword = registerPassword.getText().toString().trim();
-        inputFirstName = registerFirstName.getText().toString().trim();
-        inputLastName = registerLastName.getText().toString().trim();
+        //inputFirstName = registerFirstName.getText().toString().trim();
+        //inputLastName = registerLastName.getText().toString().trim();
         //inputMajor = registerMajor.getText().toString().trim();
 
 
-        if (inputEmail.isEmpty() || inputPassword.isEmpty()
-                || inputFirstName.isEmpty() || inputLastName.isEmpty() ) {
+        if (inputEmail.isEmpty() || inputPassword.isEmpty() ) {
             Toast.makeText(this, "Please fill out all of the fields!", Toast.LENGTH_LONG).show();
         } else {
             filled = true;

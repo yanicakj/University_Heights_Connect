@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -37,14 +39,13 @@ public class ShareActivity extends AppCompatActivity {
     private Context mContext = ShareActivity.this;
     private static final int ACITVITY_NUM = 1;
     private ImageView topBarIcon;
-    //2;
-
     private EditText contentName, contentDescription, contentLocation;
     private Spinner schools;
     private Button addContentButton;
     //private DatabaseReference classReference;
     private FirebaseDatabase firebaseDatabase;
-
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +53,8 @@ public class ShareActivity extends AppCompatActivity {
         setContentView(R.layout.test_activity_share);
         Log.d(TAG, "OnCreate: started");
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
         setupBottomNavigationView();
         setViews();
         topBarIcon = findViewById(R.id.topShareBarMenu);
@@ -87,10 +90,6 @@ public class ShareActivity extends AppCompatActivity {
 
             firebaseDatabase = FirebaseDatabase.getInstance();
 
-            //Random random = new Random();
-            //int randnum = random.nextInt(10000000) + 1;
-            //id = "post" + String.valueOf(randnum);
-
             id = firebaseDatabase.getReference("content").push().getKey();
             DatabaseReference contentRef = firebaseDatabase.getReference("content").child(id);
 
@@ -99,6 +98,7 @@ public class ShareActivity extends AppCompatActivity {
             contentRef.child("description").setValue(description);
             contentRef.child("location").setValue(location);
             contentRef.child("school").setValue(school);
+            contentRef.child("poster").setValue(firebaseUser.getUid());
             Toast.makeText(this, "Your info has been posted!", Toast.LENGTH_LONG).show();
             contentName.setText("");
             contentDescription.setText("");

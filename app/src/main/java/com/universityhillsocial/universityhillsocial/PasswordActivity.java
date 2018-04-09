@@ -24,7 +24,7 @@ public class PasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         resetButton = findViewById(R.id.resetButton);
         resetEmail = findViewById(R.id.resetEmail);

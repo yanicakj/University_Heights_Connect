@@ -51,7 +51,7 @@
         <EditText
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Enter Location"
+            android:hint="Enter Location and Time"
             android:layout_below="@+id/contentDescription"
             android:layout_marginTop="15dp"
             android:textAlignment="center"

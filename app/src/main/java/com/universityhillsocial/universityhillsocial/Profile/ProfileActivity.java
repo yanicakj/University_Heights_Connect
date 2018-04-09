@@ -12,12 +12,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +36,7 @@ import com.universityhillsocial.universityhillsocial.utils.ListViewClassAdapter;
 import com.universityhillsocial.universityhillsocial.utils.UniversalImageLoader;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Kubie on 3/18/18.
@@ -46,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Context mContext = ProfileActivity.this;
     private static final int ACITVITY_NUM = 2; //4;
     private ProgressBar mProgressBar;
-    private ImageView profilePhoto;
+    private ImageView profilePhoto, schoolIcon;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private ListView classListView;
@@ -71,12 +74,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         populateFBdata();
 
-        editProfileSquare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
-            }
-        });
+        setOnClickListeners();
+
 
     }
 
@@ -94,14 +93,20 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<ProfileClassItem> classitems = new ArrayList<ProfileClassItem>();
-                for (DataSnapshot classitem : dataSnapshot.getChildren()) {
-                    classitems.add(classitem.getValue(ProfileClassItem.class));
-                    classCount++;
+                if (dataSnapshot.getChildrenCount() != 0) {
+                    for (DataSnapshot classitem : dataSnapshot.getChildren()) {
+                        classitems.add(classitem.getValue(ProfileClassItem.class));
+                        classCount++;
+                    }
+                    Collections.reverse(classitems);
                 }
-                // TODO : add last row option "Add a class"
-                ClassAdapter newadapter = new ClassAdapter(ProfileActivity.this, classitems);
-                classListView.setAdapter(newadapter);
-                tvclassCount.setText(String.valueOf(classCount));
+                    // "Add a Class!" is used in if statement in clicklistener - check before editing
+                    ProfileClassItem lastitem = new ProfileClassItem("Add a Class!", "Click Here To Start!", "Trust the process.");
+                    classitems.add(lastitem);
+                    ClassAdapter newadapter = new ClassAdapter(ProfileActivity.this, classitems);
+                    classListView.setAdapter(newadapter);
+                    tvclassCount.setText(String.valueOf(classCount));
+
             }
 
             @Override
@@ -116,12 +121,25 @@ public class ProfileActivity extends AppCompatActivity {
                 String firstnameFB = dataSnapshot.child("firstname").getValue().toString();
                 String lastnameFB = dataSnapshot.child("lastname").getValue().toString();
                 String majorFB = dataSnapshot.child("major").getValue().toString();
-                //String emailFB = dataSnapshot.child("website").getValue().toString();
                 String emailFB = firebaseUser.getEmail();
+                String schoolFB = dataSnapshot.child("school").getValue().toString();
 
                 displayNameProfile.setText(firstnameFB + " " + lastnameFB);
                 majorProfile.setText(majorFB);
                 emailProfile.setText(emailFB);
+
+                if (schoolFB.equals("Essex County College")) {
+                    schoolIcon.setImageResource(R.drawable.ecclogo);
+                }
+                else if (schoolFB.equals("Rutgers University")) {
+                    schoolIcon.setImageResource(R.drawable.rutgerspictwo);
+                }
+                else if (schoolFB.equals("New Jersey Institute of Technology")) {
+                    schoolIcon.setImageResource(R.drawable.njitlogo);
+                }
+                else {
+                    schoolIcon.setImageResource(R.drawable.ic_school2);
+                }
             }
 
             @Override
@@ -129,6 +147,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 
@@ -147,6 +166,7 @@ public class ProfileActivity extends AppCompatActivity {
         majorProfile = findViewById(R.id.majorProfile);
         emailProfile = findViewById(R.id.emailProfile);
         editProfileSquare = findViewById(R.id.textEditProfile);
+        schoolIcon = findViewById(R.id.ivSchool2);
     }
 
     private void setupToolBar() {
@@ -231,6 +251,29 @@ public class ProfileActivity extends AppCompatActivity {
 
             return convertView;
         }
+    }
+
+    private void setOnClickListeners() {
+
+        editProfileSquare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
+            }
+        });
+
+        classListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView classtv = view.findViewById(R.id.classNameTextView);
+                String classitemname = classtv.getText().toString();
+                Log.d(TAG, "Classname clicked is : " + classitemname);
+                if (classitemname.equals("Add a Class!")) {
+                    startActivity(new Intent(ProfileActivity.this, AddClassActivity.class));
+                }
+
+            }
+        });
     }
 
 }

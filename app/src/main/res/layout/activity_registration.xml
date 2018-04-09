@@ -12,18 +12,17 @@
     <EditText
         android:id="@+id/registerEmail"
         android:layout_width="300dp"
-        android:layout_height="52dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/registerWelcome" />
 
     <EditText
         android:id="@+id/registerPassword"
@@ -56,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.046" />
 
     <Button
         android:id="@+id/RegisterButton"
@@ -93,6 +92,7 @@
         android:layout_marginTop="8dp"
         android:text="Login"
         android:textSize="22sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -107,31 +107,31 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
 
-    <EditText
-        android:id="@+id/registerFirstName"
-        android:layout_width="150dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerWelcome" />
+    <!--<EditText-->
+        <!--android:id="@+id/registerFirstName"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="42dp"-->
+        <!--android:layout_marginStart="36dp"-->
+        <!--android:layout_marginTop="18dp"-->
+        <!--android:ems="10"-->
+        <!--android:hint="First Name"-->
+        <!--android:inputType="textPersonName"-->
+        <!--android:textAlignment="center"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/registerWelcome" />-->
 
-    <EditText
-        android:id="@+id/registerLastName"
-        android:layout_width="150dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:hint="Last Name"
-        android:textAlignment="center"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerWelcome" />
+    <!--<EditText-->
+        <!--android:id="@+id/registerLastName"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="42dp"-->
+        <!--android:layout_marginEnd="36dp"-->
+        <!--android:layout_marginTop="18dp"-->
+        <!--android:ems="10"-->
+        <!--android:hint="Last Name"-->
+        <!--android:textAlignment="center"-->
+        <!--android:inputType="textPersonName"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/registerWelcome" />-->
 
     <!--<EditText-->
         <!--android:id="@+id/registerMajor"-->
