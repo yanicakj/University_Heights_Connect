@@ -1,9 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.universityhillsocial.universityhillsocial.Profile.AddClassActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/grey_border_bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Add a Class!"
+                    android:textSize="22sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="15dp"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/addClassBackArrow"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_back_arrow"
+                    />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="Add your class information:"
+                android:textSize="18dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:id="@+id/tvCreatePost"
+                android:layout_centerHorizontal="true"
+                />
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Class Name"
+                android:layout_below="@+id/tvCreatePost"
+                android:layout_marginTop="15dp"
+                android:textAlignment="center"
+                android:id="@+id/addClassClassName"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Enter Class Professor"
+                android:layout_below="@+id/addClassClassName"
+                android:layout_marginTop="15dp"
+                android:textAlignment="center"
+                android:id="@+id/addClassProfessor"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"
+                />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:text="Select Semester Below"
+                android:textColor="@color/black"
+                android:layout_below="@+id/addClassProfessor"
+                android:layout_marginTop="25dp"
+                android:textAlignment="center"
+                android:id="@+id/contentLocation"
+                android:textSize="18sp"
+                android:layout_centerHorizontal="true"
+                />
+
+            <Spinner
+                android:layout_width="250dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/contentLocation"
+                android:entries="@array/semesters"
+                android:textAlignment="center"
+                android:layout_marginTop="15dp"
+                android:id="@+id/addClassSemester"
+                >
+            </Spinner>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/addClassSemester"
+                android:text="Add Class!"
+                android:layout_marginTop="40dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/addClassButton"/>
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

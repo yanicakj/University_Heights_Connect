@@ -35,19 +35,28 @@
                     android:focusableInTouchMode="true">
                 </LinearLayout>
 
-                <EditText
-                    android:layout_width="200dp"
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textColor="@color/black"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/topHomeSearch"
-                    android:hint="Search Posts"
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    android:background="@drawable/search_bar_layout"
-                    android:nextFocusUp="@id/topHomeSearch"
-                    android:nextFocusLeft="@id/topHomeSearch"
-                    android:cursorVisible="false"
+                    android:textSize="24sp"
                     />
+                <!--<EditText-->
+                    <!--android:layout_width="200dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:id="@+id/topHomeSearch"-->
+                    <!--android:hint="Search Posts"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:background="@drawable/search_bar_layout"-->
+                    <!--android:nextFocusUp="@id/topHomeSearch"-->
+                    <!--android:nextFocusLeft="@id/topHomeSearch"-->
+                    <!--android:cursorVisible="false"-->
+                    <!--/>-->
 
                 <ImageView
                     android:layout_width="30dp"

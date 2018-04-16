@@ -2,7 +2,9 @@ package com.universityhillsocial.universityhillsocial.Profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.universityhillsocial.universityhillsocial.DeadlineActivity;
 import com.universityhillsocial.universityhillsocial.R;
@@ -52,9 +56,13 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView profilePhoto, schoolIcon;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
+    private FirebaseStorage firebaseStorage;
+    private FirebaseUser firebaseUser;
     private ListView classListView;
     private int classCount;
     private TextView tvclassCount, displayNameProfile, majorProfile, emailProfile, editProfileSquare;
+    private Uri profilePicUri = null;
+    private String imgURL;
 
 
 
@@ -65,15 +73,14 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Log.d(TAG, "OnCreate: Started");
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
         setViews();
         setupToolBar();
         setupBottomNavigationView();
-        setProfileImage();
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
         populateFBdata();
-
+        setProfileImage();
         setOnClickListeners();
 
 
@@ -98,7 +105,7 @@ public class ProfileActivity extends AppCompatActivity {
                         classitems.add(classitem.getValue(ProfileClassItem.class));
                         classCount++;
                     }
-                    Collections.reverse(classitems);
+                    //Collections.reverse(classitems);
                 }
                     // "Add a Class!" is used in if statement in clicklistener - check before editing
                     ProfileClassItem lastitem = new ProfileClassItem("Add a Class!", "Click Here To Start!", "Trust the process.");
@@ -152,8 +159,31 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     private void setProfileImage() {
-        String imgURL = "https://www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
-        UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "");
+
+        DatabaseReference profilepicref = firebaseDatabase.getReference("users").child(firebaseUser.getUid());
+        profilepicref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
+                    if (item.getKey().equals("profilepic")) {
+                        //Toast.makeText(ProfileActivity.this, item.getValue().toString(), Toast.LENGTH_LONG).show();
+                        imgURL = item.getValue().toString();
+                        UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                imgURL = "https://www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
+                UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "");
+            }
+        });
+
+
+
+        //StorageReference storageRef = firebaseStorage.getReference();
+        //StorageReference profilePicRef = storageRef.child(firebaseAuth.getUid() + "/");
 
     }
 

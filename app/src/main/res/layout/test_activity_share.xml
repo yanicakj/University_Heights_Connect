@@ -36,11 +36,22 @@
             android:layout_centerHorizontal="true"
             />
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/shareImageView"
+            android:layout_below="@id/contentName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/grey_border"
+            android:src="@drawable/ic_camera2"
+            />
+
         <EditText
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Enter Event Description"
-            android:layout_below="@+id/contentName"
+            android:layout_below="@+id/shareImageView"
             android:layout_marginTop="15dp"
             android:textAlignment="center"
             android:id="@+id/contentDescription"
