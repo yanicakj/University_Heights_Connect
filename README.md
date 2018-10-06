@@ -1,6 +1,6 @@
 # University-Hill-Social
 
-##### Included some screenshots below of the major views and features of the app.
+#### Included some screenshots below of the major views and features of the app.
 
 [Link to powerpoint](https://github.com/yanicakj/University_Hill_Social/blob/master/CapstonePresentation4-17.pptx)
 
