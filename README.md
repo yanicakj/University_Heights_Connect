@@ -11,7 +11,7 @@
   <img src="https://user-images.githubusercontent.com/20134674/46575398-7a532180-c982-11e8-8005-a7811c66f90d.png" width="225" /> 
 </p>
 
-## Profile
+## Student Profile
 
 <p float="left">
   <img src="https://user-images.githubusercontent.com/20134674/46575399-7f17d580-c982-11e8-9223-4c7c103c9d14.png" width="225" />
