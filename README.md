@@ -1,4 +1,4 @@
-# University-Hill-Social
+# University-Heights-Connect
 
 #### Included some screenshots below of the major views and features of the app.
 
